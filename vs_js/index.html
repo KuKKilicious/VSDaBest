@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+</head>
+
+<script src="js/js.js"></script>
+<script src="js/main.js"></script>
+<body>
+	<div>
+		ArtistsTable
+		<br>
+			Search:<input type="text" id="searchTerm">
+			<button onclick="searchTable()">Go!</button>
+			<br>
+			Results:
+			
+		<div>
+		<table id="resTable">
+		
+		</table>
+		
+		</div>
+
+		<div>
+			<table id="myTable" style="width: 100%; border:1px solid black">
+				<tr id="myRow">
+					<th>Index</th>
+					<th>Name</th>
+					<th>Place Of Birth</th>
+					<th>Date Of Birth</th>
+					<th>Favorite</th>
+				</tr>
+			</table>
+		</div>
+		<div>
+			
+				Name:<br>
+				<input type="text" id="addName"> <br> Place of Birth:<br>
+				<input type="text" id="addPOB"> <br> Date of Birth:<br>
+				<input type="text" id="addDOB"> <br> <input
+					type="checkbox" id="addFav" value="true">Favorite<br>
+				
+
+
+
+			
+			<button onclick="addArtist()">Add</button>
+			<!-- <button onclick="deleteArtist()">Delete</button> -->
+		</div>
+
+
+	</div>
+
+
+
+
+
+</body>
+</html>
