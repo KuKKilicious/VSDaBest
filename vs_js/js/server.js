@@ -34,7 +34,7 @@ findUserByID("DaRudi");
 
 
 
-//finds 1 User in database by id
+//finds 1 User in database by id and returns everything but password
 function findUserByID(id){
 	
 
@@ -52,7 +52,7 @@ function findUserByID(id){
 	arr[6]=user.Ort
 	arr[7]=user.Email
 	arr[8]=user.Benutzername;
-	console.log('returning' +arr);
+	console.log('returning ' +arr);
 	
 	
 	return arr; 
