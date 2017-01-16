@@ -1,7 +1,7 @@
 var http = require('http');
 var mongodb = require('mongodb');
 var mongoose = require('mongoose');
-var Artist = require('./Artist');
+var Artikel = require('./Artikel');
 var name;
 var location;
 var bdate;
@@ -23,66 +23,51 @@ const PORT=8082;
 
 
 
-
-
-
-
 function handleRequest(request, response){
   response.end();
   
-  console.log("save");
-
-  var newArtist = new Artist({
-      name: "namevar",
-  	location: "P.O.B name32145123456",
-      bdate: "birth date12121",
-      favorit: "boolean",
-      uid:0
-    });
-  
-  
-  saveArtikel(newArtist);
-  
-  
-  
-  
-  //How can i show the table through the server and put these bottom functions in my js.js functionality?!?!
-  
-  
- 
-  
-  
-  
-/*	  
-	  //save function to save data to db
-	  newArtist.save(function(error) {
-	    if (error) {
-	      console.error(error);
-	    }
-	    
-	  });
-	  */
-  /*
-  Artist.find(function (err, artists) {
-	  if (err) return console.error(err);
-	  console.log(artists);
-	});
-  Artist.find({ name: /^Lennon/ }, callback);
-*/
-  
+  newArtikel("name", asd)
   
 }
 
 
-function saveArtikel(newArtist){
-	
-console.log("save");
-newArtist.save(function(error) {
+//Creates new Article and calls saveObjectIntoDB
+function newArtikel(asd,webj,asdhjk,qweuio,asdjklz){
+
+	newArtikel = new Artikel({
+    name: "namevar",
+	location: "P.O.B name32145123456",
+    bdate: "birth date12121",
+    favorit: "boolean",
+    uid:0
+  });
+	saveObjectIntoDB(newArtikel);
+}
+
+//Creates new Article and calls saveObjectIntoDB
+function newUser(asd,webj,asdhjk,qweuio,asdjklz){
+
+	newUser = new User({
+    name: "namevar",
+	location: "P.O.B name32145123456",
+    bdate: "birth date12121",
+    favorit: "boolean",
+    uid:0
+  });
+	saveObjectIntoDB(newUser);
+}
+
+//Saves incoming Object into DB, Void
+function saveObjectIntoDB(Object){
+
+console.log("saved: "+Object);
+Object.save(function(error) {
     if (error) {
       console.error(error);
     }
     })
 }
+
 //Create and Start a server
 //Must be at the end, first we create our handle functions and than we start the server
 var server = http.createServer(handleRequest);

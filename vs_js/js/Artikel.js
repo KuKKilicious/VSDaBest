@@ -9,4 +9,4 @@ var ArtikelSchema = new mongoose.Schema({
     , uid: Number
 });
 
-module.exports = mongoose.model('Artikel', ArtistSchema);
+module.exports = mongoose.model('Artikel', ArtikelSchema);
