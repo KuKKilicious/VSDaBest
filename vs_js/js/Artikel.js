@@ -6,7 +6,7 @@ var ArtikelSchema = new mongoose.Schema({
 	beschreibung: String,
 	ort: String,
 	plz: String,
-	foto: String,
+	foto: Binary,
 	_id : String
 });
 

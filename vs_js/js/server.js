@@ -71,16 +71,12 @@ function findArtikelByID(id){
 		if (err) return handleError(err);
 	
 	var arr=[];
-	
-	arr[0]=user.anrede;
-	arr[1]=user.vorname;
-	arr[2]=user.nachname;
-	arr[3]=user.Strasse;
-	arr[4]=user.Hausnummer
-	arr[5]=user.Plz
-	arr[6]=user.Ort
-	arr[7]=user.Email
-	arr[8]=user.Benutzername;
+	arr[0]=user.titel;
+	arr[1]=user.bschreibung;
+	arr[2]=user.ort;
+	arr[3]=user.plz;
+	arr[4]=user.foto;
+	arr[5]=user._id;
 	console.log('returning' +arr);
 	
 	
@@ -94,14 +90,15 @@ function findArtikelByID(id){
 
 	
 //Creates new Article and calls saveObjectIntoDB
-function newArtikel(asd,webj,asdhjk,qweuio,asdjklz){
+function newArtikel(titel,beschreibung,ort,plz,foto,id){
 
 	newArtikel = new Artikel({
-    name: "namevar",
-	location: "P.O.B name32145123456",
-    bdate: "birth date12121",
-    favorit: "boolean",
-    uid:0
+		titel: titel,
+		beschreibung: beschreibung,
+		ort: ort,
+		plz: plz,
+		foto: foto,
+		_id : id
   });
 	if(!saveObjectIntoDB(newUser)){
 	saveObjectIntoDB(newArtikel);
