@@ -2,11 +2,7 @@ var http = require('http');
 var mongodb = require('mongodb');
 var mongoose = require('mongoose');
 var Artikel = require('./Artikel');
-var name;
-var location;
-var bdate;
-var favorit;
-var uid;
+
 
 
 //Mongoose Connection
@@ -25,8 +21,6 @@ const PORT=8082;
 
 function handleRequest(request, response){
   response.end();
-  
-  newArtikel("name", asd)
   
 }
 
