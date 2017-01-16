@@ -2,6 +2,7 @@ var http = require('http');
 var mongodb = require('mongodb');
 var mongoose = require('mongoose');
 var Artikel = require('./Artikel');
+var User = require('./User');
 
 
 
