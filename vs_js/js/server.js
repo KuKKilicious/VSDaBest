@@ -3,9 +3,12 @@ var mongodb = require('mongodb');
 var mongoose = require('mongoose');
 var Artikel = require('./Artikel');
 var User = require('./User');
-var HttpDispatcher = require('httpdispatcher');
-var dispatcher     = new HttpDispatcher();
+var fs = require("fs");
 
+//--------------------------------------------------
+//var HttpDispatcher = require('httpdispatcher');
+//var dispatcher     = new HttpDispatcher();
+//--------------------------------------------------
 //Mongoose Connection
 mongoose.connect('mongodb://KuKKi:sehrsicher123@ds119788.mlab.com:19788/kukkivs'); 
 var db = mongoose.connection;
@@ -148,8 +151,8 @@ Object.save(function(error) {
     return true;
     
 }
-
-
+//--------------------------------------------------
+/*
 //A sample GET request    
 dispatcher.onGet("/page1", function(req, res) {
 res.writeHead(200, {'Content-Type': 'text/plain'});
@@ -159,9 +162,9 @@ console.log('page1 check');
 
 res.end('Page One');
 }); 
+//--------------------------------------------------
 
-
-
+//--------------------------------------------------
 //A sample POST request
 dispatcher.onPost("/post", function(req, res) {
 res.writeHead(200, {'Content-Type': 'text/plain'});
@@ -170,7 +173,45 @@ console.log('post check');
 
 res.end('Post');
 });
+*/
 
+//--------------------------------------------------
+
+
+http.createServer(function(request, response) {	
+	
+	if(request.url === "/index"){
+		sendFileContent(response, "index.html", "text/html");
+	}
+	else if(request.url === "/"){
+		response.writeHead(200, {'Content-Type': 'text/html'});
+		response.write('<b>Hey there!</b><br /><br />This is the default response. Requested URL is: ' + request.url);
+	}
+	else if(/^\/[a-zA-Z0-9\/]*.js$/.test(request.url.toString())){
+		sendFileContent(response, request.url.toString().substring(1), "text/javascript");
+	}
+	else if(/^\/[a-zA-Z0-9\/]*.css$/.test(request.url.toString())){
+		sendFileContent(response, request.url.toString().substring(1), "text/css");
+	}
+	else{
+		console.log("Requested URL is: " + request.url);
+		response.end();
+	}
+}).listen(3000);
+
+function sendFileContent(response, fileName, contentType){
+	fs.readFile(fileName, function(err, data){
+		if(err){
+			response.writeHead(404);
+			response.write("Not Found!");
+		}
+		else{
+			response.writeHead(200, {'Content-Type': contentType});
+			response.write(data);
+		}
+		response.end();
+	});
+}
 
 //Create and Start a server
 //Must be at the end, first we create our handle functions and than we start the server
