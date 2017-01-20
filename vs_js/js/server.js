@@ -16,7 +16,7 @@ db.once("open", function (callback) {
 
 
 //Handle all request from server
-const PORT=8083;
+const PORT=8084;
 
 
 
@@ -26,10 +26,10 @@ function handleRequest(request, response){
 }
 
 //test new User, Username=ID
-//newUser('Herr', 'Martin', 'Kovalski', 'Bismarckstr','13','65349','Riedlingen','DaRudi69@Gmail.com','DaRudi','verratichnicht');
+newUser('Herr', 'Anton', 'Kovalski', 'Bismarckstr','13','65349','Riedlingen','DaRudi69@Gmail.com','DaRudi7','verratichnicht');
 
 //test to find user (success)
-findUserByID("DaRudi");
+findUserByID("DaRudi2");
 
 
 
@@ -76,7 +76,8 @@ function findArtikelByID(id){
 	arr[2]=user.ort;
 	arr[3]=user.plz;
 	arr[4]=user.foto;
-	arr[5]=user._id;
+	arr[5]=user.benutzername;
+	arr[6]=user._id;
 	console.log('returning' +arr);
 	
 	
@@ -90,7 +91,7 @@ function findArtikelByID(id){
 
 	
 //Creates new Article and calls saveObjectIntoDB
-function newArtikel(titel,beschreibung,ort,plz,foto,id){
+function newArtikel(titel,beschreibung,ort,plz,foto,benutzername,id){
 
 	newArtikel = new Artikel({
 		titel: titel,
@@ -98,6 +99,7 @@ function newArtikel(titel,beschreibung,ort,plz,foto,id){
 		ort: ort,
 		plz: plz,
 		foto: foto,
+		benutzername: benutzername,
 		_id : id
   });
 	if(!saveObjectIntoDB(newUser)){
