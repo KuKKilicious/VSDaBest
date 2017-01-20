@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<script src="../js/server.js"></script>
+</head>
+<body>
+
+<form name="anmeldung" method="get" action="" 
+onsubmit="return newUser(ar,vn,str,nr,plz,ort,email,bname,pw)">
+Anrede: <input type="text" id="anrede"/></br>
+Vorname: <input type="text" id="vorname"/></br>
+Nachname: <input type="text" id="nachname"/></br>
+Straße: <input type="text" id="strasse"/></br>
+Hausnummer: <input type="text" id="nummer"/></br>
+PLZ: <input type="text" id="plz"/></br>
+Ort: <input type="text" id="ort"/></br>
+E-Mail: <input type="text" id="email"/></br>
+Benutzername: <input type="text" id="benutzername"/></br>
+Passwort: <input type="text" id="passwort"/>
+<input type="submit" value="abschicken">
+
+<script type="text/javascript">
+
+var ar = document.getElementById("anrede").value;
+var vn = document.getElementById("vorname").value;
+var nn = document.getElementById("nachname").value;
+var str = document.getElementById("strasse").value;
+var nr = document.getElementById("nummer").value;
+var plz = document.getElementById("plz").value;
+var ort = document.getElementById("ort").value;
+var email = document.getElementById("email").value;
+var bname = document.getElementById("benutzername").value;
+var pw  = document.getElementById("passwort").value;
+
+</script>
+
+</form>
+
+</body>
+</html>
