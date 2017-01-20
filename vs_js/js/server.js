@@ -9,6 +9,7 @@ var fs = require("fs");
 //var HttpDispatcher = require('httpdispatcher');
 //var dispatcher     = new HttpDispatcher();
 //--------------------------------------------------
+
 //Mongoose Connection
 mongoose.connect('mongodb://KuKKi:sehrsicher123@ds119788.mlab.com:19788/kukkivs'); 
 var db = mongoose.connection;
@@ -26,14 +27,14 @@ const PORT=8084;
 function handleRequest(request, response){
   response.end('It Works!! Path Hit: ');
   try {
-  dispatcher.dispatch(request, response);
+  //dispatcher.dispatch(request, response);
   } catch(err) {
       console.log(err);
   }
 }
 
 //test new User, Username=ID
-newUser('Herr', 'Anton', 'Kovalski', 'Bismarckstr','13','65349','Riedlingen','DaRudi69@Gmail.com','DaRudi7','verratichnicht');
+newUser('Herr', 'Anton', 'Kovalski', 'Bismarckstr','13','65349','Riedlingen','DaRudi69@Gmail.com','DaRudi8','verratichnicht');
 
 //test to find user (success)
 findUserByID("DaRudi2");
