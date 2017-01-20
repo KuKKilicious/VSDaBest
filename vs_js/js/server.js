@@ -3,8 +3,8 @@ var mongodb = require('mongodb');
 var mongoose = require('mongoose');
 var Artikel = require('./Artikel');
 var User = require('./User');
-
-
+var HttpDispatcher = require('httpdispatcher');
+var dispatcher     = new HttpDispatcher();
 
 //Mongoose Connection
 mongoose.connect('mongodb://KuKKi:sehrsicher123@ds119788.mlab.com:19788/kukkivs'); 
@@ -21,8 +21,12 @@ const PORT=8084;
 
 
 function handleRequest(request, response){
-  response.end();
-  
+  response.end('It Works!! Path Hit: ');
+  try {
+  dispatcher.dispatch(request, response);
+  } catch(err) {
+      console.log(err);
+  }
 }
 
 //test new User, Username=ID
@@ -144,6 +148,29 @@ Object.save(function(error) {
     return true;
     
 }
+
+
+//A sample GET request    
+dispatcher.onGet("/page1", function(req, res) {
+res.writeHead(200, {'Content-Type': 'text/plain'});
+
+
+console.log('page1 check');
+
+res.end('Page One');
+}); 
+
+
+
+//A sample POST request
+dispatcher.onPost("/post", function(req, res) {
+res.writeHead(200, {'Content-Type': 'text/plain'});
+
+console.log('post check');
+
+res.end('Post');
+});
+
 
 //Create and Start a server
 //Must be at the end, first we create our handle functions and than we start the server

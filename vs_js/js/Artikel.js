@@ -7,7 +7,10 @@ var ArtikelSchema = new mongoose.Schema({
 	ort: String,
 	plz: String,
 	foto: String,
+<<<<<<< HEAD
 	Benutzername: String,
+=======
+>>>>>>> branch 'master' of https://github.com/KuKKilicious/VSDaBest.git
 	_id : String
 });
 
