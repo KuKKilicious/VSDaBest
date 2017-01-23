@@ -7,6 +7,7 @@ var fs = require("fs");
 var express = require("express");
 var app     = express();
 var path    = require("path");
+var router = 
 
 
 
@@ -33,22 +34,37 @@ app.get('/',function(req,res){
 //send the index.html as response to the user
 app.get('/index',function(req,res){
 	 console.log("Got a GET request for the indexpage");
-	 res.sendFile(path.join(__dirname, '../', 'index.html'));
+	 res.sendFile(path.join(__dirname, '../', 'home.html'));
 });
 
+app.get('/user/:id', function(req, res, next) {
+	User.findById(req.params.id, function (err, post) {
+	    if (err) return next(err);
+	    res.json(post);
+	    console.log("lala"+post +req.params.id);
+	  });
+	});
+app.get('/user/new/:anrede/:vorname/:nachname/:Strasse/:Hausnummer/:Plz/:Ort/:Email/:Benutzername/:Passwort', function(req, res, next) {
+	newUser(req.params.anrede,req.params.vorname,req.params.nachname,req.params.Strasse,req.params.Hausnummer,req.params.Plz,req.params.Ort,req.params.Email,req.params.Benutzername,req.params.Passwort, function (err, post) {
+	    if (err) return next(err);
+	    res.json(post);
+	    console.log("lala" +req.params.Benutzername);
+	    res.end
+	  });
+	});
 
 
 //test new User, Username=ID
 //newUser('Herr', 'Anton', 'Kovalski', 'Bismarckstr','13','65349','Riedlingen','DaRudi69@Gmail.com','DaRudi8','verratichnicht');
 
 //test to find user (success)
-//findUserByID("DaRudi2");
+//findUserById("DaRudi2");
 
 
 
 
 //finds 1 User in database by id and returns everything but password
-function findUserByID(id){
+function findUserById(id){
 	
 
 	User.findById(id, function (err, user) { 
