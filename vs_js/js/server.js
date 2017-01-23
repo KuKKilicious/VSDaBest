@@ -44,6 +44,7 @@ app.get('/user/:id', function(req, res, next) {
 	    console.log("lala"+post +req.params.id);
 	  });
 	});
+
 app.get('/user/new/:anrede/:vorname/:nachname/:Strasse/:Hausnummer/:Plz/:Ort/:Email/:Benutzername/:Passwort', function(req, res, next) {
 	newUser(req.params.anrede,req.params.vorname,req.params.nachname,req.params.Strasse,req.params.Hausnummer,req.params.Plz,req.params.Ort,req.params.Email,req.params.Benutzername,req.params.Passwort, function (err, post) {
 	    if (err) return next(err);
