@@ -94,7 +94,7 @@ div#homeContentText
 
 input
 {
-	*/margin: 0 0 1em 2.0em;
+	margin: 0 0 1em 2.0em;
 	padding: .2em .4em;
 	width: 40%;
 	background-color: #fffbf0;
@@ -170,7 +170,7 @@ div#homeContent
 
 .unten {
 	margin-top:10px;
-	*background-color: pink;
+	background-color: pink;
 }
 
 
@@ -199,8 +199,11 @@ img
 }
 
 
+/*benutzerKonto CSS */
 
-
+#center{
+	margin: 25px auto;
+}
 
 
 
