@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="ISO-8859-1">	
+		<link rel="stylesheet" type="text/css" href="CSS/Style.css">
+		<title>Tauschboerse</title>
+	</head>
+	
+	<body>
+		<div id="header">
+			<div id="left">
+				<a>Kategorie:</a>
+				<select class="kategorie" size="1">
+					<option>Kategorie_1</option>
+					<option>Kategorie_2</option>
+					<option>Kategorie_3</option>
+					<option>Kategorie_4</option>
+				</select><br>
+			</div>
+					
+			<div id="right">
+				<a href="login.html">Login</a> |
+				<a href="neuAnmelden.html">Neu Anmelden</a>
+			</div>
+		</div>	
+		
+		<div id="content">
+			<div id="homeContent">
+				<a>Neuen Artikel einstellen</a>
+			</div>
+			
+			<div class = "links">
+				<label for="wahl">Waehlen Sie ein Bild aus!</label>
+				<input type="file"id="files" name="files[]" multiple />
+				<output id="list"></output>
+			</div>
+			
+			<div class = "rechts">
+			<label for="kategorie">Kategorie:</label><select class="kategorie" size="1">
+														<option>Kategorie_1</option>
+														<option>Kategorie_2</option>
+														<option>Kategorie_3</option>
+														<option>Kategorie_4</option>
+													</select><br>
+													
+				<br><label for="titel">Titel:</label><input id ="titel" required><br>
+				<br><label for="ort">Ort:</label><input id ="ort" required><br>
+				<br><label for="plz">PLZ:</label><input id ="plz" required><br>
+				<br><label for="beschreibung">Beschreibung:</label><textarea></textarea><br>
+			</div>
+			
+				<br><button type="submit">Bestaetigen</button><br>
+				<br><button type="submit">Abrechen</button>
+		</div>
+		
+		<div id="footer">
+			<a href="home.html">Home</a> -
+			<a href="agb.html">AGB</a> - 
+			<a href="imprint.html">Impressum</a> 
+		</div>
+	
+	</body>
+	
+	
+
+</html>
+
+<script>
+	function dateiauswahl(evt) {
+			var dateien = evt.target.files; // FileList object
+			// Auslesen der gespeicherten Dateien durch Schleife
+			for (var i = 0, f; f = dateien[i]; i++) {
+				// nur Bild-Dateien
+				if (!f.type.match('image.*')) {
+				//	continue;
+				}
+				var reader = new FileReader();
+				reader.onload = (function (theFile) {
+					return function (e) {
+						// erzeuge Thumbnails.
+						var vorschau = document.createElement('img');
+						vorschau.className = 'vorschau';
+						vorschau.src = e.target.result;
+						vorschau.title = theFile.name;
+						document.getElementById('list').insertBefore(vorschau, null);
+					};
+				})(f);
+				// Bilder als Data URL auslesen.
+				reader.readAsDataURL(f);
+			}
+		}
+		// Auf neue Auswahl reagieren und gegebenenfalls Funktion dateiauswahl neu ausführen.
+	document.getElementById('files').addEventListener('change', dateiauswahl, false);
+
+</script>
