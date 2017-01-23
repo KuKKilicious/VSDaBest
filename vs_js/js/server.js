@@ -7,8 +7,9 @@ var fs = require("fs");
 var express = require("express");
 var app     = express();
 var path    = require("path");
-var router = 
 
+var bodyParser = require('body-parser');
+var session = require('express-session');
 
 
 
@@ -24,10 +25,53 @@ db.once("open", function (callback) {
 //Handle all request from server
 const PORT=8084;
 
+app.use(bodyParser.urlencoded({ extended: true })); 
+app.use(bodyParser.json());
+
+//session init
+app.use(session({
+    secret: 'test session',
+    resave: false,
+    saveUninitialized: true
+}));
+
+//save session
+app.get('/setsession',function(req,res){
+    sess=req.session;
+    sess.sessdata = {};
+    sess.sessdata.email= "beispiel";
+    sess.sessdata.pass= "1234";
+    var data = {
+        "Data":""
+    };
+    sess.save(function(err) {
+        if(err){
+            data["Data"] = 'Error saving session';
+            res.json(data);
+        }else{
+            data["Data"] = 'Session saved successfully';
+            res.json(data);
+        }
+    })
+    console.log(req.session);
+});
+
+//logout - destroy session
+app.get('/logout',function(req,res){
+	req.session.destroy(function(err) {
+	  if(err) {
+	    console.log(err);
+	  } else {
+	    res.redirect('/');
+	  }
+	});
+});
+
+
+
 //just for testing.. no functionality
 app.get('/',function(req,res){
 	res.send('Hello World');
-		
 	});
 
 
@@ -55,6 +99,12 @@ app.get('/user/new/:anrede/:vorname/:nachname/:Strasse/:Hausnummer/:Plz/:Ort/:Em
 	});
 
 
+//app.post('/', function(req, res) {
+//    res.send('Username: ' + req.body.username);
+//});
+
+
+
 //test new User, Username=ID
 //newUser('Herr', 'Anton', 'Kovalski', 'Bismarckstr','13','65349','Riedlingen','DaRudi69@Gmail.com','DaRudi8','verratichnicht');
 
@@ -66,7 +116,6 @@ app.get('/user/new/:anrede/:vorname/:nachname/:Strasse/:Hausnummer/:Plz/:Ort/:Em
 
 //finds 1 User in database by id and returns everything but password
 function findUserById(id){
-	
 
 	User.findById(id, function (err, user) { 
 		if (err) return handleError(err);
@@ -84,18 +133,13 @@ function findUserById(id){
 	arr[8]=user.Benutzername;
 	console.log('returning ' +arr);
 	
-	
 	return arr; 
 	
-	
 	} );
-	
-
 }
 
 //finds 1 Artikel in database by id
 function findArtikelByID(id){
-	
 
 	User.findById(id, function (err, user) { 
 		if (err) return handleError(err);
@@ -110,13 +154,9 @@ function findArtikelByID(id){
 	arr[6]=user._id;
 	console.log('returning' +arr);
 	
-	
 	return arr; 
 	
-	
-	} );
-	
-
+	} );	
 }
 
 	
@@ -138,6 +178,7 @@ function newArtikel(titel,beschreibung,ort,plz,foto,benutzername,id){
 	}
 	return true;
 }
+
 
 //Creates new User and calls saveObjectIntoDB
 function newUser(anrede,vorname,nachname,Strasse,Hausnummer,Plz,Ort,Email,Benutzername,Passwort){
@@ -161,6 +202,7 @@ function newUser(anrede,vorname,nachname,Strasse,Hausnummer,Plz,Ort,Email,Benutz
 	return true;
 }
 
+
 //Saves incoming Object into DB, Void
 function saveObjectIntoDB(Object){
 
@@ -171,8 +213,7 @@ Object.save(function(error) {
       return false;
     }
     })
-    return true;
-    
+    return true; 
 }
 
 
@@ -221,3 +262,4 @@ function sendFileContent(response, fileName, contentType){
 var server = app.listen(PORT, function () {	   
 	   console.log("Example app listening at http://%s", PORT)
 	})
+	
