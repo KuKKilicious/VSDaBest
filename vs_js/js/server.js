@@ -48,13 +48,16 @@ app.get('/setsession',function(req,res){
         if(err){
             data["Data"] = 'Error saving session';
             res.json(data);
+            res.redirect('/homeVorLogin');
         }else{
             data["Data"] = 'Session saved successfully';
             res.json(data);
         }
     })
     console.log(req.session);
+    res.end;
 });
+
 
 //logout - destroy session
 app.get('/logout',function(req,res){
@@ -66,6 +69,12 @@ app.get('/logout',function(req,res){
 	  }
 	});
 });
+
+app.get('/homeVorLogin',function(req,res){
+	res.sendFile(path.join(__dirname, '../', 'homeVorLogin.html'));
+	});
+
+
 
 
 
@@ -79,6 +88,7 @@ app.get('/',function(req,res){
 app.get('/index',function(req,res){
 	 console.log("Got a GET request for the indexpage");
 	 res.sendFile(path.join(__dirname, '../', 'home.html'));
+	 
 });
 
 app.get('/user/:id', function(req, res, next) {
@@ -98,6 +108,21 @@ app.get('/user/new/:anrede/:vorname/:nachname/:Strasse/:Hausnummer/:Plz/:Ort/:Em
 	  });
 	});
 
+//Home
+app.get('/home',function(req,res){
+	 console.log("Got a GET request for the home");
+	 res.sendFile(path.join(__dirname, '../', 'home.html')); 
+});
+//AGB
+app.get('/agb',function(req,res){
+	 console.log("Got a GET request for the agb");
+	 res.sendFile(path.join(__dirname, '../', 'agb.html')); 
+});
+//Impressum
+app.get('/imprint',function(req,res){
+	 console.log("Got a GET request for the impressum");
+	 res.sendFile(path.join(__dirname, '../', 'imprint.html')); 
+});
 
 //app.post('/', function(req, res) {
 //    res.send('Username: ' + req.body.username);
