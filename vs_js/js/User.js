@@ -12,7 +12,7 @@ var userschema = new mongoose.Schema({
 	Ort: String,
 	Email: String,
 	Benutzername: String,
-	Passwort: String,
+	Passwort: { type: String, select: false },
 	_id: String
 
 })
