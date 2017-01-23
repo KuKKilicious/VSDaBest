@@ -10,10 +10,6 @@ var path    = require("path");
 
 
 
-//--------------------------------------------------
-//var HttpDispatcher = require('httpdispatcher');
-//var dispatcher     = new HttpDispatcher();
-//--------------------------------------------------
 
 //Mongoose Connection
 mongoose.connect('mongodb://KuKKi:sehrsicher123@ds119788.mlab.com:19788/kukkivs'); 
@@ -27,14 +23,18 @@ db.once("open", function (callback) {
 //Handle all request from server
 const PORT=8084;
 
+//just for testing.. no functionality
 app.get('/',function(req,res){
 	res.send('Hello World');
+		
 	});
 
+
+//send the index.html as response to the user
 app.get('/index',function(req,res){
-	res.send('index-page');
-	});
-
+	 console.log("Got a GET request for the indexpage");
+	 res.sendFile(path.join(__dirname, '../', 'index.html'));
+});
 
 
 
