@@ -4,6 +4,11 @@ var mongoose = require('mongoose');
 var Artikel = require('./Artikel');
 var User = require('./User');
 var fs = require("fs");
+var express = require("express");
+var app     = express();
+var path    = require("path");
+
+
 
 //--------------------------------------------------
 //var HttpDispatcher = require('httpdispatcher');
@@ -22,22 +27,22 @@ db.once("open", function (callback) {
 //Handle all request from server
 const PORT=8084;
 
+app.get('/',function(req,res){
+	res.send('Hello World');
+	});
+
+app.get('/index',function(req,res){
+	res.send('index-page');
+	});
 
 
-function handleRequest(request, response){
-  response.end('It Works!! Path Hit: ');
-  try {
-  //dispatcher.dispatch(request, response);
-  } catch(err) {
-      console.log(err);
-  }
-}
+
 
 //test new User, Username=ID
-newUser('Herr', 'Anton', 'Kovalski', 'Bismarckstr','13','65349','Riedlingen','DaRudi69@Gmail.com','DaRudi8','verratichnicht');
+//newUser('Herr', 'Anton', 'Kovalski', 'Bismarckstr','13','65349','Riedlingen','DaRudi69@Gmail.com','DaRudi8','verratichnicht');
 
 //test to find user (success)
-findUserByID("DaRudi2");
+//findUserByID("DaRudi2");
 
 
 
@@ -152,53 +157,33 @@ Object.save(function(error) {
     return true;
     
 }
-//--------------------------------------------------
-/*
-//A sample GET request    
-dispatcher.onGet("/page1", function(req, res) {
-res.writeHead(200, {'Content-Type': 'text/plain'});
 
 
-console.log('page1 check');
 
-res.end('Page One');
-}); 
-//--------------------------------------------------
-
-//--------------------------------------------------
-//A sample POST request
-dispatcher.onPost("/post", function(req, res) {
-res.writeHead(200, {'Content-Type': 'text/plain'});
-
-console.log('post check');
-
-res.end('Post');
-});
-*/
 
 //--------------------------------------------------
 
-
-http.createServer(function(request, response) {	
-	
-	if(request.url === "/index"){
-		sendFileContent(response, "index.html", "text/html");
-	}
-	else if(request.url === "/"){
-		response.writeHead(200, {'Content-Type': 'text/html'});
-		response.write('<b>Hey there!</b><br /><br />This is the default response. Requested URL is: ' + request.url);
-	}
-	else if(/^\/[a-zA-Z0-9\/]*.js$/.test(request.url.toString())){
-		sendFileContent(response, request.url.toString().substring(1), "text/javascript");
-	}
-	else if(/^\/[a-zA-Z0-9\/]*.css$/.test(request.url.toString())){
-		sendFileContent(response, request.url.toString().substring(1), "text/css");
-	}
-	else{
-		console.log("Requested URL is: " + request.url);
-		response.end();
-	}
-}).listen(3000);
+//
+//http.createServer(function(request, response) {	
+//	
+//	if(request.url === "/index"){
+//		sendFileContent(response, "index.html", "text/html");
+//	}
+//	else if(request.url === "/"){
+//		response.writeHead(200, {'Content-Type': 'text/html'});
+//		response.write('<b>Hey there!</b><br /><br />This is the default response. Requested URL is: ' + request.url);
+//	}
+//	else if(/^\/[a-zA-Z0-9\/]*.js$/.test(request.url.toString())){
+//		sendFileContent(response, request.url.toString().substring(1), "text/javascript");
+//	}
+//	else if(/^\/[a-zA-Z0-9\/]*.css$/.test(request.url.toString())){
+//		sendFileContent(response, request.url.toString().substring(1), "text/css");
+//	}
+//	else{
+//		console.log("Requested URL is: " + request.url);
+//		response.end();
+//	}
+//}).listen(3000);
 
 function sendFileContent(response, fileName, contentType){
 	fs.readFile(fileName, function(err, data){
@@ -216,7 +201,6 @@ function sendFileContent(response, fileName, contentType){
 
 //Create and Start a server
 //Must be at the end, first we create our handle functions and than we start the server
-var server = http.createServer(handleRequest);
-server.listen(PORT, function(){
-  console.log("Server listening on: http://localhost:%s", PORT);
-});
+var server = app.listen(PORT, function () {	   
+	   console.log("Example app listening at http://%s", PORT)
+	})
