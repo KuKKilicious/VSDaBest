@@ -114,6 +114,11 @@ app.get('/home',function(req,res){
 	 console.log("Got a GET request for the home");
 	 res.sendFile(path.join(__dirname, '../', 'home.html')); 
 });
+//Neuen User anlegen
+app.get('/neuAnmelden',function(req,res){
+	 console.log("Got a GET request for the home");
+	 res.sendFile(path.join(__dirname, '../', 'neuAnmelden.html')); 
+});
 //AGB
 app.get('/agb',function(req,res){
 	 console.log("Got a GET request for the agb");
@@ -151,12 +156,13 @@ function findUserById(id){
 	arr[0]=user.anrede;
 	arr[1]=user.vorname;
 	arr[2]=user.nachname;
-	arr[3]=user.Strasse;
-	arr[4]=user.Hausnummer
-	arr[5]=user.Plz
-	arr[6]=user.Ort
-	arr[7]=user.Email
-	arr[8]=user.Benutzername;
+	arr[3]=user.strasse;
+	arr[4]=user.hausnummer
+	arr[5]=user.plz
+	arr[6]=user.ort
+	arr[7]=user.email
+	arr[8]=user.benutzername;
+	arr[9]=user.passwort;
 	console.log('returning ' +arr);
 	
 	return arr; 
