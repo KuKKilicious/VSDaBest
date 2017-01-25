@@ -9,7 +9,7 @@ var app     = express();
 var path    = require("path");
 
 var bodyParser = require('body-parser');
-var session = require('express-session');
+//var session = require('express-session');
 
 
 
@@ -30,13 +30,13 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 
 //session init
-app.use(session({
+/*app.use(session({
     secret: 'test session',
     resave: false,
     saveUninitialized: true
 }));
 
-//save session
+//*///save session
 app.get('/setsession',function(req,res){
     sess=req.session;
     sess.sessdata = {};
@@ -103,9 +103,7 @@ app.get('/user/:id', function(req, res, next) {
 app.get('/user/new/:anrede/:vorname/:nachname/:Strasse/:Hausnummer/:Plz/:Ort/:Email/:Benutzername/:Passwort', function(req, res, next) {
 	newUser(req.params.anrede,req.params.vorname,req.params.nachname,req.params.Strasse,req.params.Hausnummer,req.params.Plz,req.params.Ort,req.params.Email,req.params.Benutzername,req.params.Passwort, function (err, post) {
 	    if (err) return next(err);
-	    res.json(post);
-	    console.log("lala" +req.params.Benutzername);
-	    res.end
+	    res.sendFile(path.join(__dirname, '../', 'home.html'));
 	  });
 	});
 
