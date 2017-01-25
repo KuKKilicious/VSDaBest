@@ -118,10 +118,10 @@ app.get('/home',function(req,res){
 app.get('/neuAnmelden',function(req,res){
 	 console.log("Got a GET request for the home");
 	 res.sendFile(path.join(__dirname, '../', 'neuAnmelden.html'));
-	 newUser(req.params.anrede,req.params.vorname,req.params.nachname,req.params.Strasse,req.params.Hausnummer,req.params.Plz,req.params.Ort,req.params.Email,req.params.Benutzername,req.params.Passwort).save(function(err, doc){
-		if(err) res.json(err);
-		else res.send("User hinzugefügt");
-	 });
+//	 newUser(req.params.anrede,req.params.vorname,req.params.nachname,req.params.Strasse,req.params.Hausnummer,req.params.Plz,req.params.Ort,req.params.Email,req.params.Benutzername,req.params.Passwort).save(function(err, doc){
+//		if(err) res.json(err);
+//		else res.send("User hinzugefügt");
+//	 });
 });
 //AGB
 app.get('/agb',function(req,res){

@@ -9,7 +9,7 @@
 		<div id="header">
 			<div id="left">
 				<a>Kategorie:</a>
-				<select class="kategorie" size="1">
+				<select id = "auswahl" class="kategorie" size="1">
 					<option>Kategorie_1</option>
 					<option>Kategorie_2</option>
 					<option>Kategorie_3</option>
@@ -29,11 +29,11 @@
 			
 			<div class="links">
 			
-			<form action="/neuAnmelden"name="anmeldung" method="get" enctype="multipart/form-data" onsubmit="return newUser(ar,vn,str,nr,plz,ort,email,bname,pw)">
+			<form action="/neuAnmelden"name="anmeldung" method="get" onsubmit="getUrl()">
 				<label for="anrede">Anrede:</label>
-				<select class="anrede" size="1">
-					<option value="anrede[anrede]">Frau</option>
-					<option value="anrede[anrede]">Herr</option>
+				<select id="anrede" size="1">
+					<option value="Frau">Frau</option>
+					<option value="Herr">Herr</option>
 				</select><br>
 				
 				<br><label for="vorname">Vorname:</label><input id ="vorname" name="vorname" required><br>
@@ -43,30 +43,17 @@
 				<br><label for="plz">PLZ:</label><input id ="plz" name="Plz" required><br>
 				<br><label for="ort">Ort:</label><input id ="ort" name="Ort" required><br>
 				<br><label for="email">E-Mail:</label><input id ="email" name="Email" required><br>
-				<br><label for="benutzername">Benutzername:</label><input id ="Benutzername" name="user" required><br>
-				<br><label for="passowrd">Passowort:</label><input type="password" id="password" name="Passwort" required><br>	
+				<br><label for="benutzername">Benutzername:</label><input id ="benutzername" name="user" required><br>
+				<br><label for="passowrd">Passowort:</label><input type="password" id="passwort" name="Passwort" required><br>	
 				<br><!--label for="passwordBest">Passowort bestaetigen:</label><input type="password" id="passwordBest" name="user[passwort]" required--><br>
-				<br><button type="submit">Anmelden</button><br>
+				<br><button type="submit" id="anmelden">Anmelden</button><br>
 				<br><button type="reset">Abbrechen</button>
 			</form>
 			</div>
 			
 		</div>
 
-		<script type="text/javascript">
-
-var ar = document.getElementById("anrede").value;
-var vn = document.getElementById("vorname").value;
-var nn = document.getElementById("nachname").value;
-var str = document.getElementById("strasse").value;
-var nr = document.getElementById("nummer").value;
-var plz = document.getElementById("plz").value;
-var ort = document.getElementById("ort").value;
-var email = document.getElementById("email").value;
-var bname = document.getElementById("benutzername").value;
-var pw  = document.getElementById("passwort").value;
-
-</script>
+	
 
 
 		<div id="footer">
@@ -74,6 +61,19 @@ var pw  = document.getElementById("passwort").value;
 			<a href="agb.html">AGB</a> - 
 			<a href="imprint.htm">Impressum</a> 
 		</div>
+	
+	
+		<script type="text/javascript">
+		function getUrl(){
+			
+			alert("http://localhost:8084/neuAnmelden?anrede="+document.getElementById("anrede").value + "&vorname=" + document.getElementById("vorname").value + "&nachname=" + document.getElementById("nachname").value + "&Strasse=" + document.getElementById("strasse").value + "&Hausnummer=" + document.getElementById("hausNr").value + "&Plz=" + document.getElementById("plz").value + "&Ort=" + document.getElementById("ort").value + "&Email=" + document.getElementById("email").value + "&Passwort=" + document.getElementById("passwort").value);
+			return "http://localhost:8084/neuAnmelden?vorname=" + vorname + "&nachname=" + nachname + "&Strasse=" + strasse + "&Hausnummer=" + hausnr +"&Plz=" + plz +"&Ort=" + ort + "&Email=" + email + "&user=" + benutzername + "&Passwort=" + passwort;
+			
+			
+		}
+		</script>
+	
+	
 	
 	</body>
 	
