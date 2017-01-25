@@ -71,9 +71,72 @@ app.get('/logout',function(req,res){
 	});
 });
 
+
+//AGB
+app.get('/agb',function(req,res){
+	 console.log("Got a GET request for the agb");
+	 res.sendFile(path.join(__dirname, '../', 'agb.html')); 
+});
+
+//BenutzerdatenAnpassen
+app.get('/benutzerdatenAnpassen',function(req,res){
+	 console.log("Got a GET request for the benutzerdatenAnpassen");
+	 res.sendFile(path.join(__dirname, '../', 'benutzerdatenAnpassen.html')); 
+});
+
+//BenutzerKonto
+app.get('/benutzerKonto',function(req,res){
+	 console.log("Got a GET request for the benutzerKonto");
+	 res.sendFile(path.join(__dirname, '../', 'benutzerKonto.html')); 
+});
+
+
+//EigeneArtikel
+app.get('/eigeneArtikel',function(req,res){
+	console.log("Got a GET request for the eigeneArtikel");
+	res.sendFile(path.join(__dirname, '../', 'eigeneArtikel.html'));
+});
+
+
+//EingestellterArtikel
+app.get('/eingestellterArtikel',function(req,res){
+	console.log("Got a GET request for the eingestellterArtikel");
+	res.sendFile(path.join(__dirname, '../', 'eingestellterArtikel.html'));
+});
+
+//Home
+app.get('/home',function(req,res){
+	 console.log("Got a GET request for the home");
+	 res.sendFile(path.join(__dirname, '../', 'home.html')); 
+});
+
+//HomeVorLogin
 app.get('/homeVorLogin',function(req,res){
-	res.sendFile(path.join(__dirname, '../', 'homeVorLogin.html'));
-	});
+	 console.log("Got a GET request for the homeVorLogin");
+	 res.sendFile(path.join(__dirname, '../', 'homeVorLogin.html')); 
+});
+
+//Impressum
+app.get('/imprint',function(req,res){
+	 console.log("Got a GET request for the imprint");
+	 res.sendFile(path.join(__dirname, '../', 'imprint.html')); 
+});
+
+//Neuen User anlegen
+app.get('/neuAnmelden',function(req,res){
+	 console.log("Got a GET request for the neuAmelden");
+	 res.sendFile(path.join(__dirname, '../', 'neuAnmelden.html'));
+//	 newUser(req.params.anrede,req.params.vorname,req.params.nachname,req.params.Strasse,req.params.Hausnummer,req.params.Plz,req.params.Ort,req.params.Email,req.params.Benutzername,req.params.Passwort).save(function(err, doc){
+//		if(err) res.json(err);
+//		else res.send("User hinzugefügt");
+//	 });
+});
+
+//NeuenArtikelEinstellen
+app.get('/neuenArtikelEinstellen',function(req,res){
+	 console.log("Got a GET request for the neuenArtikelEinstellen");
+	 res.sendFile(path.join(__dirname, '../', 'neuenArtikelEinstellen.html')); 
+});
 
 
 
@@ -109,30 +172,9 @@ app.get('/user/new/:anrede/:vorname/:nachname/:Strasse/:Hausnummer/:Plz/:Ort/:Em
 	  });
 	});
 
-//Home
-app.get('/home',function(req,res){
-	 console.log("Got a GET request for the home");
-	 res.sendFile(path.join(__dirname, '../', 'home.html')); 
-});
-//Neuen User anlegen
-app.get('/neuAnmelden',function(req,res){
-	 console.log("Got a GET request for the home");
-	 res.sendFile(path.join(__dirname, '../', 'neuAnmelden.html'));
-//	 newUser(req.params.anrede,req.params.vorname,req.params.nachname,req.params.Strasse,req.params.Hausnummer,req.params.Plz,req.params.Ort,req.params.Email,req.params.Benutzername,req.params.Passwort).save(function(err, doc){
-//		if(err) res.json(err);
-//		else res.send("User hinzugefügt");
-//	 });
-});
-//AGB
-app.get('/agb',function(req,res){
-	 console.log("Got a GET request for the agb");
-	 res.sendFile(path.join(__dirname, '../', 'agb.html')); 
-});
-//Impressum
-app.get('/imprint',function(req,res){
-	 console.log("Got a GET request for the impressum");
-	 res.sendFile(path.join(__dirname, '../', 'imprint.html')); 
-});
+
+
+
 
 //app.post('/', function(req, res) {
 //    res.send('Username: ' + req.body.username);
