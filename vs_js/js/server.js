@@ -162,7 +162,6 @@ function findUserById(id){
 	arr[6]=user.ort
 	arr[7]=user.email
 	arr[8]=user.benutzername;
-	arr[9]=user.passwort;
 	console.log('returning ' +arr);
 	
 	return arr; 
