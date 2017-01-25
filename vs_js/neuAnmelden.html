@@ -29,7 +29,7 @@
 			
 			<div class="links">
 			
-			<form name="anmeldung" method="get" enctype="multipart/form-data">
+			<form action="http://127.0.0.1:8084/home"name="anmeldung" method="get" enctype="multipart/form-data">
 				<label for="anrede">Anrede:</label>
 				<select class="anrede" size="1">
 					<option value="anrede[anrede]">Frau</option>
@@ -50,20 +50,6 @@
 				<br><button type="reset">Abbrechen</button>
 			</form>
 			</div>
-			
-			
-		<script>	
-			var ar = document.getElementById("anrede").value;
-			var vn = document.getElementById("vorname").value;
-			var nn = document.getElementById("nachname").value;
-			var str = document.getElementById("strasse").value;
-			var nr = document.getElementById("nummer").value;
-			var plz = document.getElementById("plz").value;
-			var ort = document.getElementById("ort").value;
-			var email = document.getElementById("email").value;
-			var bname = document.getElementById("benutzername").value;
-			var pw  = document.getElementById("passwort").value;
-		</script>
 			
 		</div>
 
