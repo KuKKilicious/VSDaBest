@@ -104,6 +104,12 @@ app.get('/eingestellterArtikel',function(req,res){
 	res.sendFile(path.join(__dirname, '../', 'eingestellterArtikel.html'));
 });
 
+//ErfolgreichRegistriert
+app.get('/erfolgreichRegistriert',function(req,res){
+	console.log("Got a GET request for the erfolgreichRegistriert");
+	res.sendFile(path.join(__dirname, '../', 'erfolgreichRegistriert.html'));
+});
+
 //Home
 app.get('/home',function(req,res){
 	 console.log("Got a GET request for the home");
