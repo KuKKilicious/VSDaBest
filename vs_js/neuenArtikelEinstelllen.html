@@ -2,7 +2,7 @@
 
 <html>
 	<head>
-		<meta charset="ISO-8859-1">	
+		<meta charset="utf-8">	
 		<link rel="stylesheet" type="text/css" href="/css/Style.css">
 		<title>Tauschboerse</title>
 	</head>
@@ -20,7 +20,7 @@
 			</div>
 					
 			<div id="right">
-				<a href="benutzerKonto.html">BENUTZERNAME</a> |
+				<a href="benutzerKonto">BENUTZERNAME</a> |
 			</div>
 		</div>	
 		
@@ -54,18 +54,14 @@
 		</div>
 		
 		<div id="footer">
-			<a href="home.html">Home</a> -
-			<a href="agb.html">AGB</a> - 
-			<a href="imprint.html">Impressum</a> 
+			<a href="home">Home</a> -
+			<a href="agb">AGB</a> - 
+			<a href="imprint">Impressum</a> 
 		</div>
 	
 	</body>
 	
-	
-
-</html>
-
-<script>
+	<script>
 	function dateiauswahl(evt) {
 			var dateien = evt.target.files; // FileList object
 			// Auslesen der gespeicherten Dateien durch Schleife
@@ -89,7 +85,11 @@
 				reader.readAsDataURL(f);
 			}
 		}
-		// Auf neue Auswahl reagieren und gegebenenfalls Funktion dateiauswahl neu ausführen.
+		// Auf neue Auswahl reagieren und gegebenenfalls Funktion dateiauswahl neu ausfÃ¼hren.
 	document.getElementById('files').addEventListener('change', dateiauswahl, false);
 
 </script>
+	
+
+</html>
+
