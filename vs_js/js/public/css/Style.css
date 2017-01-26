@@ -6,8 +6,11 @@ div#header
 	height:40px;
 	font-family:Arial;
 	font-weight:normal;
-	font-size:1.0em;
+	position: absolute;
+	top:0px;
+	line-height: 40px;
 }
+
 
 div#header A
 {
@@ -28,11 +31,12 @@ div#center
 div#right
 {
 	float:right;
+	margin-right: 20px;
 }
 
 div#footer	
 {	
-	height:25px;
+	height:40px;
 	clear:both;
 	margin-top:10px;
 	text-align:center;
@@ -41,6 +45,10 @@ div#footer
 	font-size:1.0em;
 	background-color:#b63425;
 	color:#FFFFFF;
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	line-height: 40px;
 }
 
 div#footer A
@@ -53,14 +61,35 @@ div#footer A
 
 div#homeContent
 {
-	margin-top:10px;
 	width:100%;
-	background-color:#a4aeb4;
-	text-align:left;
 	font-family:Arial;
 	font-weight:normal;
 	font-size:1.5em;
 	color:#FFFFFF;
+	line-height: 100px;
+	text-align: center;
+	margin:0;
+}
+
+#sucheingabe{
+	height: 20px;
+	margin: 10px;
+	float:left;
+}
+
+#suchLabel{
+	line-height: 40px;
+	padding-left: 20px;
+}
+
+#sucheStarten{
+	position: absolute;
+	top: 10px;
+	left: 167px;
+	height: 20px;
+	line-height: 20px;
+	padding:0;
+	width: 100px;
 }
 
 
@@ -205,7 +234,12 @@ img
 	margin: 25px auto;
 }
 
-
+.centerAutho{
+	width: 600px;
+	margin: 0 auto;
+	padding-top: 100px;
+	
+}
 
 
 
