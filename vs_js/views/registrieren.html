@@ -38,12 +38,42 @@
 
     <!-- LOGIN FORM -->
     <form action="/signup" method="post">
+		<label for="anrede">Anrede:</label>
+				<select id="anrede" size="1" name="anrede">
+					<option value="Frau">Frau</option>
+					<option value="Herr">Herr</option>
+				</select>
+				<br>
+ 		<div class="form-group">
+            <label>Vorname</label>
+            <input type="text" class="form-control" name="vorname">
+        </div>
+		<div class="form-group">
+            <label>Nachname</label>
+            <input type="text" class="form-control" name="nachname">
+        </div>
+		<div class="form-group">
+            <label>Strasse</label>
+            <input type="text" class="form-control" name="strasse">
+        </div>
+		<div class="form-group">
+            <label>HausNr</label>
+            <input type="text" class="form-control" name="hausnr">
+        </div>
+		<div class="form-group">
+            <label>PLZ</label>
+            <input type="text" class="form-control" name="plz">
+        </div>
         <div class="form-group">
             <label>Email</label>
             <input type="text" class="form-control" name="email">
         </div>
         <div class="form-group">
-            <label>Password</label>
+            <label>Benutzername</label>
+            <input type="text" class="form-control" name="benutzername">
+        </div>
+        <div class="form-group">
+            <label>Passwort</label>
             <input type="password" class="form-control" name="password">
         </div>
 
@@ -66,7 +96,11 @@
 		
 		
 		
-		
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
 		
 		
 		

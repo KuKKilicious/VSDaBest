@@ -2,12 +2,12 @@ var http = require('http');
 var mongodb = require('mongodb');
 var mongoose = require('mongoose');
 var Artikel = require('./js/Artikel');
-var User = require('./js/User');
+var User = require('./js/userA');
 var fs = require("fs");
 var express = require("express");
 var app     = express();
 var path    = require("path");
-
+var account = require('./js/account');
 var passport = require('passport');
 var bodyParser = require('body-parser');
 var session = require('express-session');
