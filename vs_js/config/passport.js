@@ -73,7 +73,7 @@ module.exports = function(passport) {
                 newUser.local.vorname 		= req.body.vorname;
                 newUser.local.nachname 		= req.body.nachname;
                 newUser.local.Strasse 		= req.body.strasse;
-                newUser.local.Hausnummer 	= req.body.hausnummer;
+                newUser.local.Hausnummer 	= req.body.hausnr;
                 newUser.local.Plz 			= req.body.plz;
                 newUser.local.Ort 			= req.body.ort;
      
