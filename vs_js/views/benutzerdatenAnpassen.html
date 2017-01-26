@@ -10,19 +10,16 @@
 	<body>
 		<div id="header">
 			<div id="left">
-				<a>Kategorie:</a>
-				<select class="kategorie" size="1">
-					<option>Kategorie_1</option>
-					<option>Kategorie_2</option>
-					<option>Kategorie_3</option>
-					<option>Kategorie_4</option>
-				</select><br>
+				<form name="suche" id="suche" method="get" action="">
+					<label for="suche" style="width: 50px">Suche</label><input type="text" id="suche">
+					<input type="submit" value="Suche starten">
+				</form>
 			</div>
 					
 			<div id="right">
 				<a href="benutzerKonto">BENUTZERNAME</a> |
 			</div>
-		</div>		
+		</div>	
 		
 		<div id="content">
 			<div id="homeContent">
@@ -44,8 +41,8 @@
 				<br><label for="ort">Ort:</label><input id ="ort" required><br>
 				<br><label for="email">E-Mail:</label><input id ="email" required><br>
 				<br><label for="benutzername">Benutzername:</label><input id ="benutzername" required disabled="disabled" style="background-color:#d3d3d3"><br>
-				<br><label for="passowrd">Passowort:</label><input type="password" id="password" required><br>	
-				<br><label for="passwordBest">Passowort bestaetigen:</label><input type="password" id="passwordBest" required><br>
+				<br><label for="passowrd">Passwort:</label><input type="password" id="password" required><br>	
+				<br><label for="passwordBest">Passowort bestätigen:</label><input type="password" id="passwordBest" required><br>
 			</div>
 			
 			<br><button type="submit">Anmelden</button><br>

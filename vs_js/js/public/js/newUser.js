@@ -62,8 +62,8 @@
 		}
 		
 		function validatePlz(){
-			if((document.getElementById("plz").value.length != 5) || (document.getElementById("plz").value.indexOf("0") > 0 || document.getElementById("plz").value.indexOf("1") > 0 || document.getElementById("plz").value.indexOf("2") > 0 || document.getElementById("plz").value.indexOf("3") > 0 || document.getElementById("plz").value.indexOf("4") > 0 || document.getElementById("plz").value.indexOf("5") > 0 || document.getElementById("plz").value.indexOf("6") > 0 || document.getElementById("plz").value.indexOf("7") > 0 || document.getElementById("plz").value.indexOf("8") > 0 || document.getElementById("plz").value.indexOf("9") > 0)){
-				alert("Die PLZ besteht aus 5 Ziffern!");
+			if (!document.getElementById("plz").value.match(/^[0-9]{5}$/)){
+				alert('Die Postleitzahl ist ungültig');
 				return false;
 			}
 			return true;
