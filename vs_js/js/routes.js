@@ -84,57 +84,57 @@ module.exports = function(app, passport) {
   //AGB
   app.get('/agb',function(req,res){
   	 console.log("Got a GET request for the agb");
-  	 res.sendFile(path.join(__dirname, '../', 'agb.html')); 
+  	res.render('agb.html', { message: req.flash('signupMessage') });
   });
 
   //BenutzerdatenAnpassen
   app.get('/benutzerdatenAnpassen',function(req,res){
   	 console.log("Got a GET request for the benutzerdatenAnpassen");
-  	 res.sendFile(path.join(__dirname, '../', 'benutzerdatenAnpassen.html')); 
+  	res.render('benutzerdatenAnpassen.html', { message: req.flash('signupMessage') });
   });
 
   //BenutzerKonto
   app.get('/benutzerKonto',function(req,res){
   	 console.log("Got a GET request for the benutzerKonto");
-  	 res.sendFile(path.join(__dirname, '../', 'benutzerKonto.html')); 
+  	res.render('benutzerKonto.html', { message: req.flash('signupMessage') });
   });
 
 
   //EigeneArtikel
   app.get('/eigeneArtikel',function(req,res){
   	console.log("Got a GET request for the eigeneArtikel");
-  	res.sendFile(path.join(__dirname, '../', 'eigeneArtikel.html'));
+  	res.render('eigeneArtikel.html', { message: req.flash('signupMessage') });
   });
 
 
   //EingestellterArtikel
   app.get('/eingestellterArtikel',function(req,res){
   	console.log("Got a GET request for the eingestellterArtikel");
-  	res.sendFile(path.join(__dirname, '../', 'eingestellterArtikel.html'));
+  	res.render('eingestellterArtikel.html', { message: req.flash('signupMessage') });
   });
 
   //ErfolgreichRegistriert
   app.get('/erfolgreichRegistriert',function(req,res){
   	console.log("Got a GET request for the erfolgreichRegistriert");
-  	res.sendFile(path.join(__dirname, '../', 'erfolgreichRegistriert.html'));
+  	res.render('erfolgreichRegistriert.html', { message: req.flash('signupMessage') });
   });
 
   //Home
   app.get('/home',function(req,res){
   	 console.log("Got a GET request for the home");
-  	 res.sendFile(path.join(__dirname, '../', 'home.html')); 
+  	res.render('home.html', { message: req.flash('signupMessage') });
   });
 
   //HomeVorLogin
   app.get('/homeVorLogin',function(req,res){
   	 console.log("Got a GET request for the homeVorLogin");
-  	 res.sendFile(path.join(__dirname, '../', 'homeVorLogin.html')); 
+  	res.render('homeVorLogin.html', { message: req.flash('signupMessage') });
   });
 
   //Impressum
   app.get('/imprint',function(req,res){
   	 console.log("Got a GET request for the imprint");
-  	 res.sendFile(path.join(__dirname, '../', 'imprint.html')); 
+  	res.render('imprint.html', { message: req.flash('signupMessage') });
   });
 
   //Neuen User anlegen
@@ -150,7 +150,7 @@ module.exports = function(app, passport) {
   //NeuenArtikelEinstellen
   app.get('/neuenArtikelEinstellen',function(req,res){
   	 console.log("Got a GET request for the neuenArtikelEinstellen");
-  	 res.sendFile(path.join(__dirname, '../', 'neuenArtikelEinstellen.html')); 
+  	res.render('neuenArtikelEinstellen.html', { message: req.flash('signupMessage') });
   });
 
 
@@ -160,7 +160,7 @@ module.exports = function(app, passport) {
   //send the index.html as response to the user
   app.get('/index',function(req,res){
   	 console.log("Got a GET request for the indexpage");
-  	 res.sendFile(path.join(__dirname, '../', 'home.html'));
+  	res.render('home.html', { message: req.flash('signupMessage') });
   	 
   });
 
