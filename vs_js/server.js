@@ -1,15 +1,21 @@
 var http = require('http');
 var mongodb = require('mongodb');
 var mongoose = require('mongoose');
-var Artikel = require('./Artikel');
-var User = require('./User');
+var Artikel = require('./js/Artikel');
+var User = require('./js/User');
 var fs = require("fs");
 var express = require("express");
 var app     = express();
 var path    = require("path");
 
+var passport = require('passport');
 var bodyParser = require('body-parser');
-//var session = require('express-session');
+var session = require('express-session');
+
+var flash    = require('connect-flash');
+var morgan       = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser   = require('body-parser');
 
 
 
@@ -29,152 +35,44 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 
-//session init
-/*app.use(session({
-    secret: 'test session',
-    resave: false,
-    saveUninitialized: true
-}));
+//
+/*
+ * 
+ * 
+ * 
+ *///
 
-//*///save session
-app.get('/setsession',function(req,res){
-    sess=req.session;
-    sess.sessdata = {};
-    sess.sessdata.email= "beispiel";
-    sess.sessdata.pass= "1234";
-    var data = {
-        "Data":""
-    };
-    sess.save(function(err) {
-        if(err){
-            data["Data"] = 'Error saving session';
-            res.json(data);
-            res.redirect('/homeVorLogin');
-        }else{
-            data["Data"] = 'Session saved successfully';
-            res.json(data);
-        }
-    })
-    console.log(req.session);
-    res.end;
-});
+require('./config/passport')(passport); // pass passport for configuration
+
+//set up our express application
+app.use(morgan('dev')); // log every request to the console
+app.use(cookieParser()); // read cookies (needed for auth)
+app.use(bodyParser()); // get information from html forms
+//
+app.set('views', __dirname + '/views');
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html'); // set up ejs for templating
+
+//required for passport
+app.use(session({ secret: 'shhh' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+
+//routes ======================================================================
+require('./js/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
 
-//logout - destroy session
-app.get('/logout',function(req,res){
-	req.session.destroy(function(err) {
-	  if(err) {
-	    console.log(err);
-	  } else {
-	    res.redirect('/');
-	  }
-	});
-});
-
-
-//AGB
-app.get('/agb',function(req,res){
-	 console.log("Got a GET request for the agb");
-	 res.sendFile(path.join(__dirname, '../', 'agb.html')); 
-});
-
-//BenutzerdatenAnpassen
-app.get('/benutzerdatenAnpassen',function(req,res){
-	 console.log("Got a GET request for the benutzerdatenAnpassen");
-	 res.sendFile(path.join(__dirname, '../', 'benutzerdatenAnpassen.html')); 
-});
-
-//BenutzerKonto
-app.get('/benutzerKonto',function(req,res){
-	 console.log("Got a GET request for the benutzerKonto");
-	 res.sendFile(path.join(__dirname, '../', 'benutzerKonto.html')); 
-});
-
-
-//EigeneArtikel
-app.get('/eigeneArtikel',function(req,res){
-	console.log("Got a GET request for the eigeneArtikel");
-	res.sendFile(path.join(__dirname, '../', 'eigeneArtikel.html'));
-});
-
-
-//EingestellterArtikel
-app.get('/eingestellterArtikel',function(req,res){
-	console.log("Got a GET request for the eingestellterArtikel");
-	res.sendFile(path.join(__dirname, '../', 'eingestellterArtikel.html'));
-});
-
-//ErfolgreichRegistriert
-app.get('/erfolgreichRegistriert',function(req,res){
-	console.log("Got a GET request for the erfolgreichRegistriert");
-	res.sendFile(path.join(__dirname, '../', 'erfolgreichRegistriert.html'));
-});
-
-//Home
-app.get('/home',function(req,res){
-	 console.log("Got a GET request for the home");
-	 res.sendFile(path.join(__dirname, '../', 'home.html')); 
-});
-
-//HomeVorLogin
-app.get('/homeVorLogin',function(req,res){
-	 console.log("Got a GET request for the homeVorLogin");
-	 res.sendFile(path.join(__dirname, '../', 'homeVorLogin.html')); 
-});
-
-//Impressum
-app.get('/imprint',function(req,res){
-	 console.log("Got a GET request for the imprint");
-	 res.sendFile(path.join(__dirname, '../', 'imprint.html')); 
-});
-
-//Neuen User anlegen
-app.get('/neuAnmelden',function(req,res){
-	 console.log("Got a GET request for the neuAmelden");
-	 res.sendFile(path.join(__dirname, '../', 'neuAnmelden.html'));
-//	 newUser(req.params.anrede,req.params.vorname,req.params.nachname,req.params.Strasse,req.params.Hausnummer,req.params.Plz,req.params.Ort,req.params.Email,req.params.Benutzername,req.params.Passwort).save(function(err, doc){
-//		if(err) res.json(err);
-//		else res.send("User hinzugefügt");
-//	 });
-});
-
-//NeuenArtikelEinstellen
-app.get('/neuenArtikelEinstellen',function(req,res){
-	 console.log("Got a GET request for the neuenArtikelEinstellen");
-	 res.sendFile(path.join(__dirname, '../', 'neuenArtikelEinstellen.html')); 
-});
+//
+/*
+ * 
+ * 
+ * 
+ *///
 
 
 
 
-
-//just for testing.. no functionality
-app.get('/',function(req,res){
-	res.send('Hello World');
-	});
-
-
-//send the index.html as response to the user
-app.get('/index',function(req,res){
-	 console.log("Got a GET request for the indexpage");
-	 res.sendFile(path.join(__dirname, '../', 'home.html'));
-	 
-});
-
-app.get('/user/:id', function(req, res, next) {
-	User.findById(req.params.id, function (err, post) {
-	    if (err) return next(err);
-	    res.json(post);
-	    console.log("lala"+post +req.params.id);
-	  });
-	});
-
-app.get('/user/new/:anrede/:vorname/:nachname/:Strasse/:Hausnummer/:Plz/:Ort/:Email/:Benutzername/:Passwort', function(req, res, next) {
-	newUser(req.params.anrede,req.params.vorname,req.params.nachname,req.params.Strasse,req.params.Hausnummer,req.params.Plz,req.params.Ort,req.params.Email,req.params.Benutzername,req.params.Passwort, function (err, post) {
-	    if (err) return next(err);
-	    res.sendFile(path.join(__dirname, '../', 'home.html'));
-	  });
-	});
 
 
 
