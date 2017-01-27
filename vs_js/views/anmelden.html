@@ -3,16 +3,36 @@
 <head>
 <meta charset="utf-8">
 <title>Anmelden</title>
+<link rel="stylesheet" type="text/css" href="/css/Style.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 <script src="../js/server.js"></script>
 </head>
 <body>
 
 
 
-<div class="container">
+<div id="header">
+	<div id="left">
+	<form name="suche" id="suche" action="/login" method="post">
+        <div class="form-group">
+            <label id="suchLabel">Suche</label>
+            <input type="text" class="form-control" name="suche">
+        </div>
+ 		<button type="submit" class="btn btn-warning btn-lg">LOS</button>
+    </form>
+    </div>
+</div>
 
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 <div class="col-sm-6 col-sm-offset-3">
+<div class="centerAutho">
 
+   			<div class="jumbotron text-center">
     <h1><span class="fa fa-sign-in"></span> Login</h1>
 
     <!-- show any messages that come back with authentication -->
@@ -33,53 +53,21 @@
 
         <button type="submit" class="btn btn-warning btn-lg">Login</button>
     </form>
-
+</div>
+</div>
     <hr>
 
     <p>Need an account? <a href="/signup">Signup</a></p>
     <p>Or go <a href="/">home</a>.</p>
 
-</div>
-
-</div>
-
-
-
-
-<!-- AB HIER ALTER CODE -->
-<!-- ----------------- -->
-<!-- ----------------- -->
-
-<!-- <form name="anmeldung" method="get" action="" 
-onsubmit="return newUser(ar,vn,str,nr,plz,ort,email,bname,pw)">
-Anrede: <input type="text" id="anrede"/></br>
-Vorname: <input type="text" id="vorname"/></br>
-Nachname: <input type="text" id="nachname"/></br>
-Straße: <input type="text" id="strasse"/></br>
-Hausnummer: <input type="text" id="nummer"/></br>
-PLZ: <input type="text" id="plz"/></br>
-Ort: <input type="text" id="ort"/></br>
-E-Mail: <input type="text" id="email"/></br>
-Benutzername: <input type="text" id="benutzername"/></br>
-Passwort: <input type="text" id="passwort"/>
-<input type="submit" value="abschicken" >
-
-<script type="text/javascript">
-
-var ar = document.getElementById("anrede").value;
-var vn = document.getElementById("vorname").value;
-var nn = document.getElementById("nachname").value;
-var str = document.getElementById("strasse").value;
-var nr = document.getElementById("nummer").value;
-var plz = document.getElementById("plz").value;
-var ort = document.getElementById("ort").value;
-var email = document.getElementById("email").value;
-var bname = document.getElementById("benutzername").value;
-var pw  = document.getElementById("passwort").value;
-
-</script>
-
-</form>
- -->
+	</div>
+			<div id="footer">
+			<a href="home">Home</a> |
+			<a href="agb">AGB</a> |
+			<a href="imprint">Impressum</a> |
+			<a href="homeVorLogin">anmelden</a>
+	
+		</div>
+	
 </body>
 </html>

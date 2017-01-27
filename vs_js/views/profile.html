@@ -1,9 +1,11 @@
+
 <!-- views/profile.ejs -->
 <!doctype html>
 <html>
 <head>
 	<meta charset="utf-8">	
     <title>Node Authentication</title>
+    <link rel="stylesheet" type="text/css" href="/css/Style.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <style>
@@ -11,23 +13,28 @@
     </style>
 </head>
 <body>
-<div class="container">
+
 <div id="header">
+	<div id="left">
+	<form name="suche" id="suche" action="/login" method="post">
+        <div class="form-group">
+            <label id="suchLabel">Suche</label>
+            <input type="text" class="form-control" name="suche">
+        </div>
+ 		<button type="submit" class="btn btn-warning btn-lg">LOS</button>
+    </form>
+    </div>
+</div>
+		<br/>
+		<br/>			
 			<div id="left">
-				<form name="suche" id="suche" method="get" action="">
-					<label for="suche" style="width: 50px">Suche</label><input type="text" id="suche">
-					<input type="submit" value="Suche starten">
-				</form>
-			</div>
-					
-			<div id="right">
-				<a href="benutzerKonto">BENUTZERNAME</a> 
+				<a href="profile">Mein Konto</a> 
 				<br/>
 				<br/>
 				<a href="/eigeneArtikel" class="btn btn-default"><span class="fa fa-user"></span> Meine Artikel</a>
 			</div>
-		</div>	
-</div>		
+			
+	
 		<br/>
 		<br/>   
 		<p>Herzlichen Glückwunsch. Sie haben sich soeben erfolgreich registriert</p>
