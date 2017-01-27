@@ -124,14 +124,24 @@ module.exports = function(app, passport) {
 	  
 	  if (req.isAuthenticated()){
 			var name = req.user.local.benutzername;
+			
+			Artikel.findOne({ benutzername: name}, function (err, doc){
+				
+				// doc is a the found element
+				
+				console.log('returning ' +doc);
+				res.render('eigeneArtikel.html', { user : doc });
+			  	return doc;
+			});
+			
 	//don't know how to get data out of arti		
-  	var arti = findArtikelByBenutzername(name);
-  	console.log('Test: arti= ' +arti);
-  	console.log('Test: arti[1]= ' +arti[1]);
-  	console.log('Test: arti.titel= ' +arti.titel);
+//  	var arti = findArtikelByBenutzername(name);
+//  	console.log('Test: arti= ' +arti);
+//  	console.log('Test: arti[1]= ' +arti[1]);
+//  	console.log('Test: arti.titel= ' +arti.titel);
 //  	console.log("Got a GET request for the eigeneArtikel");
   	
-  	res.render('eigeneArtikel.html', { user : req.user });
+  	
 	  }else{
 		  res.render('profile.html', { message: req.flash('signupMessage') });
 	  }
@@ -242,13 +252,14 @@ function findArtikelByBenutzername(name){
 		// doc is a the found element
 		
 		console.log('returning ' +doc);
+		
 	  	return doc;
 	  	
 		if (err) return handleError(err);
 		});
 	
 	
-
+	
 
 //	console.log('arr.toString(): ' + arr.toString() );
 
