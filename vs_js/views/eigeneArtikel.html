@@ -10,18 +10,23 @@
 	</head>
 	
 	<body>
-		<div id="header">
+<div id="header">
+	<div id="left">
+	<form name="suche" id="suche" action="/suchergebnisse" method="get">
+        <div class="form-group">
+            <label id="suchLabel">Suche</label>
+            <input type="text" class="form-control" name="suche">
+        </div>
+ 		<button type="submit" class="btn btn-warning btn-lg">LOS</button>
+    </form>
+    </div>
+</div>
+		<br/>
+		<br/>			
 			<div id="left">
-				<form name="suche" id="suche" method="get" action="">
-					<label for="suche" style="width: 50px">Suche</label><input type="text" id="suche">
-					<input type="submit" value="Suche starten">
-				</form>
-			</div>
-					
-			<div id="right">
-				<a href="benutzerKonto">BENUTZERNAME</a> |
-			</div>
-		</div>	
+				<a href="profile">Mein Konto</a> 
+				<br/>
+				<br/>
 		<br/>
 		<br/>
 		    <div class="page-header text-center">
@@ -54,10 +59,10 @@
 		
 		<div id="content">
 			<div id="homeContent">
-				<a><a href="eingestellterArtikel">Einen neuen Artikel einstellen</a></a>
+				<a href="eingestellterArtikel">Einen neuen Artikel einstellen</a>
 			</div>
 
-				</a>
+				
 			</div>					
 		</div>
 		
