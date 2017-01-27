@@ -1,10 +1,17 @@
 // app/routes.js
+
+var Artikel = require('./Artikel');
+
+
+
+
 module.exports = function(app, passport) {
 
     // =====================================
     // HOME PAGE (with login links) ========
     // =====================================
-    app.get('/', function(req, res) {
+    app.get('/',  function(req, res) {
+    
         res.render('index.html'); // load the index.ejs file
     });
 
@@ -50,13 +57,18 @@ module.exports = function(app, passport) {
         failureFlash : true // allow flash messages
     }));
 
+  
     // =====================================
     // PROFILE SECTION =====================
     // =====================================
     // we will want this protected so you have to be logged in to visit
     // we will use route middleware to verify this (the isLoggedIn function)
     app.get('/profile', isLoggedIn, function(req, res) {
-        res.render('profile.html', {
+    	
+//    	console.log('Test: req.user= ' +req.user);
+//    	console.log('Test: req.user.local.benutzername= ' +req.user.local.benutzername);
+        
+    	res.render('profile.html', {
             user : req.user // get the user out of session and pass to template
         });
     });
@@ -79,8 +91,6 @@ module.exports = function(app, passport) {
     //
     //
     //
-
-
   //AGB
   app.get('/agb',function(req,res){
   	 console.log("Got a GET request for the agb");
@@ -100,10 +110,31 @@ module.exports = function(app, passport) {
   });
 
 
+  
+  
+  
+  //------------------------------------------------------------------------------------
+  //------------------------------------------------------------------------------------
+  //------------------------------------------------------------------------------------
+  //------------------------------------------------------------------------------------
+  //------------------------------------------------------------------------------------
+  //------------------------------------------------------------------------------------
   //EigeneArtikel
-  app.get('/eigeneArtikel',function(req,res){
-  	console.log("Got a GET request for the eigeneArtikel");
-  	res.render('eigeneArtikel.html', { message: req.flash('signupMessage') });
+  app.get('/eigeneArtikel', function(req,res){
+	  
+	  if (req.isAuthenticated()){
+			var name = req.user.local.benutzername;
+	//don't know how to get data out of arti		
+  	var arti = findArtikelByBenutzername(name);
+  	console.log('Test: arti= ' +arti);
+  	console.log('Test: arti[1]= ' +arti[1]);
+  	console.log('Test: arti.titel= ' +arti.titel);
+//  	console.log("Got a GET request for the eigeneArtikel");
+  	
+  	res.render('eigeneArtikel.html', { user : req.user });
+	  }else{
+		  res.render('profile.html', { message: req.flash('signupMessage') });
+	  }
   });
 
 
@@ -200,11 +231,31 @@ function isLoggedIn(req, res, next) {
 
     // if they aren't redirect them to the home page
     res.redirect('/');
-    
-    
-    
+     
 }
 
 
+//finds 1 Artikel in database by id
+function findArtikelByBenutzername(name){
+	var arr= Artikel.findOne({ benutzername: name}, function (err, doc){
+		
+		// doc is a the found element
+		
+		console.log('returning ' +doc);
+	  	return doc;
+	  	
+		if (err) return handleError(err);
+		});
+	
+	
+
+
+//	console.log('arr.toString(): ' + arr.toString() );
+
+	//console: 'arr: '[object Object]
+	console.log('arr: ' + arr );
+	return arr; 	
+
+}
 
 

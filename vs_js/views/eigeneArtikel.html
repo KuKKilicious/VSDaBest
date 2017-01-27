@@ -4,6 +4,8 @@
 	<head>
 		<meta charset="utf-8">	
 		<link rel="stylesheet" type="text/css" href="/css/Style.css">
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 		<title>Tauschboerse</title>
 	</head>
 	
@@ -20,9 +22,31 @@
 				<a href="benutzerKonto">BENUTZERNAME</a> |
 			</div>
 		</div>	
-		
-		
-		
+		<br/>
+		<br/>
+		    <div class="page-header text-center">
+        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    </div>
+
+    <div class="row">
+
+        <!-- LOCAL INFORMATION -->
+        <div class="col-sm-6">
+            <div class="well">
+                <h3><span class="fa fa-user"></span> Artikel</h3>
+
+                    <p>
+                        <strong>id</strong>: <%= user._id %><br>
+			            <strong>benutzername</strong>: <%= user.local.benutzername %><br>
+                        <strong>password</strong>: <%= user._id %>
+                    </p>
+
+            </div>
+        </div>
+     </div>
+	<br/>
+	<br/>
 		
 		<div id="content">
 			<div id="homeContent">
@@ -36,8 +60,7 @@
 			</div>					
 		</div>
 		
-		
-		
+
 		
 		
 		
