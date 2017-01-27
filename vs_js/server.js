@@ -11,7 +11,7 @@ var account = require('./js/account');
 var passport = require('passport');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var $ = require('jQuery');
+//var $ = require('jQuery');
 
 var flash    = require('connect-flash');
 var morgan       = require('morgan');
