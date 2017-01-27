@@ -60,15 +60,10 @@ module.exports = function(passport) {
                 return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
             } else {
             	
-            	console.log('anrede: ' + req.body.anrede);
-            	console.log('vorname: ' + req.body.vorname);
-                // if there is no user with that email
+            	// if there is no user with that email
                 // create the user
-                var newUser            = new User({
-                	_id: benutzername
-                	
-                });
-
+             
+            	var newUser               = new User({ });
                 // set the user's local credentials
                 newUser.local.benutzername  = benutzername;
                 newUser.local.password 		= newUser.generateHash(password);
@@ -78,7 +73,15 @@ module.exports = function(passport) {
                 newUser.local.Strasse 		= req.body.strasse;
                 newUser.local.Hausnummer 	= req.body.hausnr;
                 newUser.local.Plz 			= req.body.plz;
-                newUser.local.Ort 			= req.body.ort;
+                
+                newUser.local.Ort 			= req.body.plz;
+                newUser.local.email 		= req.body.plz;
+                newUser.local._id 			= benutzername;
+
+//                newUser
+
+                
+                console.log('newUser:  ' + newUser);
      
                 
 
