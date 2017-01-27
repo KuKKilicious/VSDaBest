@@ -244,9 +244,10 @@ module.exports = function(app, passport) {
 	              if (err)
 	                  throw err;
 	          });
-	    res.render('eigeneArtikel.html', { user : req.user });
+	    res.redirect('/../eigeneArtikel');
 		 }else{
 			 res.render('registrieren.html', { message: req.flash('signupMessage') });
+			 
 		 }
 		 
 		
