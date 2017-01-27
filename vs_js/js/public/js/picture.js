@@ -15,7 +15,7 @@ function jpgToBase64(picture){
 	
 }
 
-*/
+
    // you can do this once in a page, and this function will appear in all your files 
     File.prototype.convertToBase64 = function(callback){
             var reader = new FileReader();
@@ -49,3 +49,34 @@ function readURL(input) {
             reader.readAsDataURL(input.files[0]);
         }
     }
+
+
+
+function uploadFile() {
+    var blobFile = $('#filechooser').files[0];
+    var formData = new FormData();
+    formData.append("fileToUpload", blobFile);
+
+    $.ajax({
+       url: "upload.php",
+       type: "POST",
+       data: fd,
+       processData: false,
+       contentType: false,
+       success: function(response) {
+           // .. do something
+       },
+       error: function(jqXHR, textStatus, errorMessage) {
+           console.log(errorMessage); // Optional
+       }
+    });
+}
+function createArtikel(){
+	$.get
+	
+}*/
+
+
+function readURL(event){
+alert(getval.value);
+}

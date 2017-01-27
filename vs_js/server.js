@@ -29,7 +29,7 @@ db.once("open", function (callback) {
 
 
 //Handle all request from server
-const PORT=8084;
+const PORT=8083;
 
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(bodyParser.json());
@@ -72,8 +72,30 @@ require('./js/routes.js')(app, passport); // load our routes and pass in our app
 
 
 
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
+app.use(bodyParser.json());
 
+app.post("/article/new", function (req, res) {
+    
+    newArtikel= new Artikel();
+    
+    newArtikel.titel		= req.body.article.titel;
+    newArtikel.beschreibung		= req.body.article.beschreibung;
+    newArtikel.ort		= "ort" 
+    newArtikel.plz		= "plz"
+    newArtikel.foto		= req.body.article.foto;
+    newArtikel.benutzername = "benutzername"
+    
+    	
+    	  newArtikel.save(function(err) {
+              if (err)
+                  throw err;
+          });
+    
+});
 
 
 

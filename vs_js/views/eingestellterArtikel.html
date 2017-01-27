@@ -30,28 +30,47 @@
 			</div>
 			
 			<div class = "links">
-				<img src="IMAGES/bild_01.jpg"alt="images"/>
+				<input id="inp" type='file'>
+		<p id="b64"></p>
+		<img id="img" height="150">
 			</div>
 			
 			<div class = "rechts">
-			<label for="kategorie">Kategorie:</label><input id ="kategorie" required><br>
+			<!--  <label for="kategorie">Kategorie:</label><input id ="kategorie" required><br>
 				<br><label for="titel">Titel:</label><input id ="titel" required><br>
-				<br><label for="benutzername">Benutzername:</label><input id ="benutzername" required><br>
+			  	<br><label for="benutzername">Benutzername:</label><input id ="benutzername" required><br>
 				<br><label for="ort">Ort:</label><input id ="ort" required><br>
 				<br><label for="plz">PLZ:</label><input id ="plz" required><br>
+				-->
+				
+				
+				
+				<form method="post" action="/article/new">
+   				
+   				<label for="titel">Titel</label>
+   				<input type="text" name="article[titel]">
+  				
+  				<label for="Beschreibung">Beschreibung</label>
+  				<input type="text" name="article[beschreibung]">
+  				<label for="Bild">Bild</label>
+  				<input type='file' id='getval' onchange="readURL(event)" name="article[foto]" /><br/><br/>
+  				<input type="submit" value="Einstellen">
+    </form>
+    
+    
+    <!--  
 				<br><label for="email">E-Mail:</label><input id ="email" required><br>	
 				<br><label for="beschreibung">Beschreibung:</label><textarea></textarea><br>
 			</div>
 			
-				<br><button type="submit">Tauschen</button><br>
-				<br><button type="submit">Abrechen</button>
+				<br><button type="submit" onclick="createArtikel()">Einstellen</button><br>
+				<br><button type="submit">Abrechen</button>-->
+
 
 		
 		</div>
-		<input id="inp" type='file'>
-		<p id="b64"></p>
-		<img id="img" height="150">
-		hello
+		
+		
 		<div id="footer">
 			<a href="home">Home</a> -
 			<a href="agb">AGB</a> - 
