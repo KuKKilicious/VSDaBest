@@ -124,24 +124,16 @@ module.exports = function(app, passport) {
 	  
 	  if (req.isAuthenticated()){
 			var name = req.user.local.benutzername;
-			
-			Artikel.findOne({ benutzername: name}, function (err, doc){
-				
-				// doc is a the found element
-				
-				console.log('returning ' +doc);
-				res.render('eigeneArtikel.html', { user : doc });
-			  	return doc;
-			});
-			
 	//don't know how to get data out of arti		
-//  	var arti = findArtikelByBenutzername(name);
-//  	console.log('Test: arti= ' +arti);
-//  	console.log('Test: arti[1]= ' +arti[1]);
-//  	console.log('Test: arti.titel= ' +arti.titel);
+  	var arti = [];
+  	
+  	arti = findArtikelByBenutzername(name);
+  	console.log('Test: arti= ' +arti);
+  	console.log('Test: arti[1]= ' +arti[1]);
+  	console.log('Test: arti.titel= ' +arti.titel);
 //  	console.log("Got a GET request for the eigeneArtikel");
   	
-  	
+  	res.render('eigeneArtikel.html', { user : req.user });
 	  }else{
 		  res.render('profile.html', { message: req.flash('signupMessage') });
 	  }
@@ -226,9 +218,42 @@ module.exports = function(app, passport) {
     
     
     
- 
-    
+ /*
+  app.use(bodyParser.urlencoded({
+	    extended: true
+	}));
+
+	app.use(bodyParser.json());
+*/
+	app.post("/article/new", function (req, res) {
+		 if (req.isAuthenticated()){
+				var name = req.user.local.benutzername;
+				var ort = req.user.local.Ort;
+				var plz = req.user.local.Plz;
+	    newArtikel= new Artikel();
+	    
+	    newArtikel.titel		= req.body.article.titel;
+	    newArtikel.beschreibung		= req.body.article.beschreibung;
+	    newArtikel.ort		= ort
+	    newArtikel.plz		= plz
+	    newArtikel.foto		= req.body.article.foto;
+	    newArtikel.benutzername = name
+	    
+	    	
+	    	  newArtikel.save(function(err) {
+	              if (err)
+	                  throw err;
+	          });
+	    res.render('eigeneArtikel.html', { user : req.user });
+		 }else{
+			 res.render('registrieren.html', { message: req.flash('signupMessage') });
+		 }
+		 
+		
+	});  
 };
+
+
 
 
 
@@ -247,25 +272,32 @@ function isLoggedIn(req, res, next) {
 
 //finds 1 Artikel in database by id
 function findArtikelByBenutzername(name){
-	var arr= Artikel.findOne({ benutzername: name}, function (err, doc){
+	
+	var arr=Artikel.findOne({ benutzername: name}, function (err, doc){
 		
+		
+		//var arr = $.map(doc.Artikel, function(el) { return el });
 		// doc is a the found element
 		
-		console.log('returning ' +doc);
-		
-	  	return doc;
+	  
+	  	
+		console.log(arr[1]);
 	  	
 		if (err) return handleError(err);
 		});
 	
 	
-	
+
 
 //	console.log('arr.toString(): ' + arr.toString() );
 
 	//console: 'arr: '[object Object]
 	console.log('arr: ' + arr );
-	return arr; 	
+	
+	var retArr=[];
+	retArr[0]=arr.titel;
+	console.log('retarr = ' +retArr)
+	return retArr; 	
 
 }
 

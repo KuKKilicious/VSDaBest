@@ -11,6 +11,7 @@ var account = require('./js/account');
 var passport = require('passport');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var $ = require('jQuery');
 
 var flash    = require('connect-flash');
 var morgan       = require('morgan');
@@ -72,30 +73,6 @@ require('./js/routes.js')(app, passport); // load our routes and pass in our app
 
 
 
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-
-app.use(bodyParser.json());
-
-app.post("/article/new", function (req, res) {
-    
-    newArtikel= new Artikel();
-    
-    newArtikel.titel		= req.body.article.titel;
-    newArtikel.beschreibung		= req.body.article.beschreibung;
-    newArtikel.ort		= "ort" 
-    newArtikel.plz		= "plz"
-    newArtikel.foto		= req.body.article.foto;
-    newArtikel.benutzername = "benutzername"
-    
-    	
-    	  newArtikel.save(function(err) {
-              if (err)
-                  throw err;
-          });
-    
-});
 
 
 
