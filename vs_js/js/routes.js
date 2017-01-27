@@ -138,8 +138,8 @@ module.exports = function(app, passport) {
   
   //Suchergebnisse
   app.get('/suchergebnisse',  function(req, res) {
-		
-	  	var name = req.body.suche;
+	 
+	  	var name =  req.query.suche;
 		var name1 = req.params.suche;
 		
 		// name and name1 are undefined -.-		
