@@ -12,7 +12,10 @@ module.exports = function(app, passport) {
     
         res.render('index.html'); // load the index.ejs file
     });
-
+    app.get('/index',  function(req, res) {
+        
+        res.render('index.html'); // load the index.ejs file
+    });
     // =====================================
     // LOGIN ===============================
     // =====================================

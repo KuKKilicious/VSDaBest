@@ -7,28 +7,43 @@
 		<script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
 		<script type="text/javascript" src="/js/picture.js"></script>
 		
-		<title>Tauschboerse</title>
+		<title>Schenken-Macht-Freude</title>
 	</head>
 	
 	<body>
-		<div id="header">
-			<div id="left">
-				<form name="suche" id="suche" method="get" action="">
-					<label for="suche" style="width: 50px">Suche</label><input type="text" id="suche">
-					<input type="submit" value="Suche starten">
-				</form>
-			</div>
-					
-			<div id="right">
-				<a href="benutzerKonto">BENUTZERNAME</a> |
-			</div>
-		</div>	
+<div id="header">
+	<div id="left">
+	<form name="suche" id="suche" action="/suchergebnisse" method="get">
+        <div class="form-group">
+            <label id="suchLabel">Suche</label>
+            <input type="text" class="form-control" name="suche">
+        </div>
+ 		<button type="submit" class="btn btn-warning btn-lg">LOS</button>
+    </form>
+    </div>
+</div>
+		<br/>
+		<br/>			
+			
+	<div id="left">
+		<a href="profile">Mein Konto</a> 
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+		    <div class="page-header text-center">
+        		<h1><span class="fa fa-anchor"></span> Profile Page</h1>
+        		<a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    		</div>
+			<br/>
+    </div>
+    <br/>
 		
 		<div id="content">
 			<div id="homeContent">
 				<a>Eingestellter Artikel</a>
 			</div>
-			
+		</div>	
 			<div class = "links">
 				
 		<p id="b64"><output id="imgTest"></output></p>
