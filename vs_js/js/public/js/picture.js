@@ -1,82 +1,21 @@
+function encodeImageFileAsURL() {
 
-/*
-function binaryToJpg(binary){
-	var img = document.createElement('img');
-	img.src = 'data:image/jpeg;base64,' + btoa('your-binary-data');
-	document.body.appendChild(img);
-	
-	
-}
-function jpgToBase64(picture){
-	var img = document.createElement('img');
-	img.src = 'data:image/jpeg;base64,' + btoa('your-binary-data');
-	document.body.appendChild(img);
-	
-	
-}
+    var filesSelected = document.getElementById("inputFileToLoad").files;
+    if (filesSelected.length > 0) {
+      var fileToLoad = filesSelected[0];
 
+      var fileReader = new FileReader();
 
-   // you can do this once in a page, and this function will appear in all your files 
-    File.prototype.convertToBase64 = function(callback){
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                 callback(e.target.result)
-            };
-            reader.onerror = function(e) {
-                 callback(null);
-            };        
-            reader.readAsDataURL(this);
-    };
+      fileReader.onload = function(fileLoadedEvent) {
+        var srcData = fileLoadedEvent.target.result; // <--- data: base64
 
-    $('#blah').on('change',function(){
-      var selectedFile = this.files[0];
-      selectedFile.convertToBase64(function(base64){
-           alert(base64);
-      }) 
-    });
-function readURL(input) {
-	console.log("asdhjk");
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
+        var newImage = document.createElement('img');
+        newImage.src = srcData;
 
-            reader.onload = function (e) {
-                $('#blah')
-                    .attr('src', e.target.result)
-                    .width(150)
-                    .height(200);
-            };
-
-            reader.readAsDataURL(input.files[0]);
-        }
+        document.getElementById("imgTest").innerHTML = newImage.outerHTML;
+        document.getElementById("base64t").value= document.getElementById("imgTest").innerHTML; // DAS KOMMT WEG...Dient als kontrollfunktion, anstatt "alert", mit DB verbinden.
+        console.log("Converted Base64 version is " + document.getElementById("imgTest").innerHTML);
+      }
+      fileReader.readAsDataURL(fileToLoad);
     }
-
-
-
-function uploadFile() {
-    var blobFile = $('#filechooser').files[0];
-    var formData = new FormData();
-    formData.append("fileToUpload", blobFile);
-
-    $.ajax({
-       url: "upload.php",
-       type: "POST",
-       data: fd,
-       processData: false,
-       contentType: false,
-       success: function(response) {
-           // .. do something
-       },
-       error: function(jqXHR, textStatus, errorMessage) {
-           console.log(errorMessage); // Optional
-       }
-    });
-}
-function createArtikel(){
-	$.get
-	
-}*/
-
-
-function readURL(event){
-alert(getval.value);
-}
+  }

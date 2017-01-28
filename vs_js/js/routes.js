@@ -233,7 +233,7 @@ module.exports = function(app, passport) {
 	    
 	    newArtikel.titel		= req.body.article.titel;
 	    newArtikel.beschreibung		= req.body.article.beschreibung;
-	    newArtikel.ort		= ort
+	    newArtikel.Ort		= ort
 	    newArtikel.plz		= plz
 	    newArtikel.foto		= req.body.article.foto;
 	    newArtikel.benutzername = name
