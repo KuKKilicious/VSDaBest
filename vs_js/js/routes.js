@@ -186,6 +186,10 @@ module.exports = function(app, passport) {
   	res.render('neuenArtikelEinstellen.html', { message: req.flash('signupMessage') });
   });
 
+  app.get('/randomStuff',function(req,res){
+	  	 console.log("Got a GET request for randomStuff");
+	  	res.render('randomStuff.html', { message: req.flash('signupMessage') });
+	  });
 
 
 
