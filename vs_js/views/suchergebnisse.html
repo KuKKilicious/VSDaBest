@@ -10,6 +10,8 @@
 	</head>
 	
 	<body>
+
+
 <div id="header">
 	<div id="left">
 	<form name="suche" id="suche" action="/suchergebnisse" method="get">
@@ -23,30 +25,37 @@
 </div>
 		<br/>
 		<br/>			
-		<div id="left">
-				<a href="profile">Mein Konto</a> 
-				<br/>
-				<br/>
-				<br/>
-				<br/>
+			
+	<div id="left">
+		<a href="profile">Mein Konto</a> 
+			<br/>
+			<br/>
+			<br/>
+			<br/>
 		    <div class="page-header text-center">
-        	<h1><span class="fa fa-anchor"></span> Profile Page</h1>
-        	<a href="/logout" class="btn btn-default btn-sm">Logout</a>
+        		<h1><span class="fa fa-anchor"></span> Profile Page</h1>
+        		<a href="/logout" class="btn btn-default btn-sm">Logout</a>
     		</div>
-		</div>
+			<br/>
+    </div>
+		<br/>
 		
-    <div class="row">
+	
+	
+    <div class="row" >
 
         <!-- LOCAL INFORMATION -->
         <div class="col-sm-6">
             <div class="well">
-                <h3><span class="fa fa-user"></span> Artikel</h3>
+                <h3><span class="fa fa-user"></span> Suchergebnisse</h3>
 
                     <p>
- 						 <strong>Benutzername</strong>: <%= user.benutzername %><br> 
-                       <strong>Titel</strong>: <%= user.titel %><br> 
-			      <strong>Beschreibung</strong>: <%= user.beschreibung %><br> 
+ 						
+                   <strong>Titel</strong>: <%= user.titel %><br> 
+			       <strong>Beschreibung</strong>: <%= user.beschreibung %><br>
+			       <strong>Benutzername</strong>: <%= user.benutzername %><br> 
 			       <strong>Ort</strong>: <%= user.ort %><br> 
+			       <strong>Plz</strong>: <%= user.plz %><br> 
 			       <strong>Foto</strong>: <%= user.foto %><br> 
 			      
 			        
@@ -60,17 +69,12 @@
 		
 		<div id="content">
 			<div id="homeContent">
-				<a href="eingestellterArtikel">Einen neuen Artikel einstellen</a>
+				<a><a href="eingestellterArtikel">Einen neuen Artikel einstellen</a></a>
 			</div>
-
-				
-			</div>					
-		
+	
+		</div>					
 		
 
-		
-		
-		
 		
 		<div id="footer">
 			<a href="home">Home</a> -

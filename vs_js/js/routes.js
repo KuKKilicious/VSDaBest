@@ -1,13 +1,11 @@
 // app/routes.js
-
 var Artikel = require('./Artikel');
-
 
 
 
 module.exports = function(app, passport) {
 
-    // =====================================
+	// =====================================
     // HOME PAGE (with login links) ========
     // =====================================
     app.get('/',  function(req, res) {
@@ -84,10 +82,7 @@ module.exports = function(app, passport) {
     
     
     
-    
-    
-    
-    
+      
     //
     //
     //
@@ -125,20 +120,42 @@ module.exports = function(app, passport) {
 	  if (req.isAuthenticated()){
 			var name = req.user.local.benutzername;
 	//don't know how to get data out of arti		
-  	var arti = [];
-  	
-  	arti = findArtikelByBenutzername(name);
-  	console.log('Test: arti= ' +arti);
-  	console.log('Test: arti[1]= ' +arti[1]);
-  	console.log('Test: arti.titel= ' +arti.titel);
-//  	console.log("Got a GET request for the eigeneArtikel");
-  	
-  	res.render('eigeneArtikel.html', { user : req.user });
-	  }else{
-		  res.render('profile.html', { message: req.flash('signupMessage') });
-	  }
-  });
 
+	Artikel.findOne({ benutzername: name}, function (err, doc){
+							
+		// doc is a the found element
+							
+		console.log('returning ' +doc);
+		res.render('eigeneArtikel.html', { user : doc });
+		return doc;
+		});
+	 
+	  	}else{
+	  	res.render('profile.html', { message: req.flash('signupMessage') });
+	}
+  });
+  
+  
+  //Suchergebnisse
+  app.get('/suchergebnisse',  function(req, res) {
+	 
+	  	var name =  req.query.suche;
+		var name1 = req.params.suche;
+		
+		// name and name1 are undefined -.-		
+		console.log('suchergebnisse name: ' + name);
+		console.log('suchergebnisse name1: ' + name1);
+		
+		Artikel.findOne({ titel: name}, function (err, doc){
+								
+		// doc is a the found element
+		console.log('returning ' +doc);
+		res.render('suchergebnisse.html', { user : doc });
+		return doc;
+		});
+		 
+  
+  });
 
   //EingestellterArtikel
   app.get('/eingestellterArtikel',function(req,res){
@@ -170,15 +187,7 @@ module.exports = function(app, passport) {
   	res.render('imprint.html', { message: req.flash('signupMessage') });
   });
 
-  //Neuen User anlegen
-//  app.get('/neuAnmelden',function(req,res){
-//  	 console.log("Got a GET request for the neuAmelden");
-//  	 res.sendFile(path.join(__dirname, '../', 'neuAnmelden.html'));
-//  	 newUser(req.params.anrede,req.params.vorname,req.params.nachname,req.params.Strasse,req.params.Hausnummer,req.params.Plz,req.params.Ort,req.params.Email,req.params.Benutzername,req.params.Passwort).save(function(err, doc){
-//  		if(err) res.json(err);
-//  		else res.send("User hinzugefügt");
-//  	 });
-//  });
+ 
 
   //NeuenArtikelEinstellen
   app.get('/neuenArtikelEinstellen',function(req,res){
@@ -193,14 +202,6 @@ module.exports = function(app, passport) {
 
 
 
-
-  //send the index.html as response to the user
-  app.get('/index',function(req,res){
-  	 console.log("Got a GET request for the indexpage");
-  	res.render('home.html', { message: req.flash('signupMessage') });
-  	 
-  });
-
   app.get('/user/:id', function(req, res, next) {
   	User.findById(req.params.id, function (err, post) {
   	    if (err) return next(err);
@@ -209,12 +210,6 @@ module.exports = function(app, passport) {
   	  });
   	});
 
-  app.get('/user/new/:anrede/:vorname/:nachname/:Strasse/:Hausnummer/:Plz/:Ort/:Email/:Benutzername/:Passwort', function(req, res, next) {
-  	newUser(req.params.anrede,req.params.vorname,req.params.nachname,req.params.Strasse,req.params.Hausnummer,req.params.Plz,req.params.Ort,req.params.Email,req.params.Benutzername,req.params.Passwort, function (err, post) {
-  	    if (err) return next(err);
-  	    res.sendFile(path.join(__dirname, '../', 'home.html'));
-  	  });
-  	});
   
   //
   //
@@ -275,35 +270,5 @@ function isLoggedIn(req, res, next) {
 }
 
 
-//finds 1 Artikel in database by id
-function findArtikelByBenutzername(name){
-	
-	var arr=Artikel.findOne({ benutzername: name}, function (err, doc){
-		
-		
-		//var arr = $.map(doc.Artikel, function(el) { return el });
-		// doc is a the found element
-		
-	  
-	  	
-		console.log(arr[1]);
-	  	
-		if (err) return handleError(err);
-		});
-	
-	
-
-
-//	console.log('arr.toString(): ' + arr.toString() );
-
-	//console: 'arr: '[object Object]
-	console.log('arr: ' + arr );
-	
-	var retArr=[];
-	retArr[0]=arr.titel;
-	console.log('retarr = ' +retArr)
-	return retArr; 	
-
-}
 
 
