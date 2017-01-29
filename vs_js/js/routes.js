@@ -159,6 +159,7 @@ app.get('/benachrichtigungen', function(req,res){
 		
 		console.log('returning ' +doc);
 		res.render('eigeneArtikel.html', { user : doc });
+		res.render('keineArtikelGefunden.html', { user : err });
 		return doc;
 		});
 	 
