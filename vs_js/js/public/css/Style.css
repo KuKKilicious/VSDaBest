@@ -6,9 +6,10 @@ div#header
 	height:40px;
 	font-family:Arial;
 	font-weight:normal;
-	position: absolute;
+	position: fixed;
 	top:0px;
 	line-height: 40px;
+	z-index: 150;
 }
 
 
@@ -45,26 +46,11 @@ div#footer
 	font-size:1.0em;
 	background-color:#b63425;
 	color:#FFFFFF;
-	position: absolute;
+	position: fixed;
 	bottom: 0px;
 	width: 100%;
 	line-height: 40px;
-}
-div#footer1	
-{	
-	height:40px;
-	clear:both;
-	margin-top:10px;
-	text-align:center;
-	font-family:Arial;
-	font-weight:normal;
-	font-size:1.0em;
-	background-color:#b63425;
-	color:#FFFFFF;
-	position: relative;
-	bottom: 0px;
-	width: 100%;
-	line-height: 40px;
+	z-index: 150;
 }
 
 div#footer A
@@ -187,6 +173,7 @@ button
 
 div#content {
 	font-family:Arial;
+	position: relative;
 }
 
 div#homeContent
