@@ -9,17 +9,17 @@
 	
 	<body>
 		<div id="header">
-			<div id="left">
-				<form name="suche" id="suche" method="get" action="">
-					<label for="suche" style="width: 50px">Suche</label><input type="text" id="suche">
-					<input type="submit" value="Suche starten">
-				</form>
-			</div>
-					
-			<div id="right">
-				<a href="benutzerKonto">BENUTZERNAME</a> |
-			</div>
-		</div>	
+	<div id="left">
+	<form name="suche" id="suche" action="/suchergebnisse" method="get">
+        <div class="form-group">
+            <label id="suchLabel">Suche</label><input type="text" class="form-control suchEingabe" name="suche">
+            	<button type="submit" class="btn btn-warning btn-lg sucheStarten">LOS</button>
+   
+        </div>
+ 	 </form>
+	   
+    </div>
+ </div>
 		
 		<p>Herzlichen Glückwunsch. Sie haben sich soeben erfolgreich registriert</p>
 		
