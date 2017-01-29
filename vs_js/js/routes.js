@@ -10,11 +10,20 @@ module.exports = function(app, passport) {
     // =====================================
     app.get('/',  function(req, res) {
     
-        res.render('index.html'); // load the index.ejs file
+  	  if (req.isAuthenticated()){
+  		res.render('profile.html', { message: req.flash('signupMessage') });
+  	 
+  	  	}else{
+        res.render('index.html')}; // load the index.ejs file
     });
+    
     app.get('/index',  function(req, res) {
-        
-        res.render('index.html'); // load the index.ejs file
+    	
+     if (req.isAuthenticated()){
+    	res.render('profile.html', { message: req.flash('signupMessage') });
+    	  	 
+    	}else{
+         res.render('index.html')}; // load the index.ejs file
     });
     // =====================================
     // LOGIN ===============================
@@ -134,7 +143,7 @@ module.exports = function(app, passport) {
 		});
 	 
 	  	}else{
-	  	res.render('profile.html', { message: req.flash('signupMessage') });
+	  	res.render('index.html', { message: req.flash('signupMessage') });
 	}
   });
   
@@ -142,20 +151,30 @@ module.exports = function(app, passport) {
   //Suchergebnisse
   app.get('/suchergebnisse',  function(req, res) {
 	 
-	  	var name =  req.query.suche;
-		var name1 = req.params.suche;
+	   
+	  if (req.isAuthenticated()){
+		  var name =  req.query.suche;
+			var name1 = req.params.suche;
+			
+			// name and name1 are undefined -.-		
+			console.log('suchergebnisse name: ' + name);
+			console.log('suchergebnisse name1: ' + name1);
+			
+			Artikel.findOne({ titel: name}, function (err, doc){
+									
+			// doc is a the found element
+			console.log('returning ' +doc);
+			res.render('suchergebnisse.html', { user : doc });
+			return doc;
+			});
 		
-		// name and name1 are undefined -.-		
-		console.log('suchergebnisse name: ' + name);
-		console.log('suchergebnisse name1: ' + name1);
-		
-		Artikel.findOne({ titel: name}, function (err, doc){
-								
-		// doc is a the found element
-		console.log('returning ' +doc);
-		res.render('suchergebnisse.html', { user : doc });
-		return doc;
-		});
+	 
+	  	}else{
+	  	res.render('index.html', { message: req.flash('signupMessage') });
+	}
+	  
+	  
+	  	
 		 
   
   });
@@ -166,11 +185,6 @@ module.exports = function(app, passport) {
   	res.render('eingestellterArtikel.html', { message: req.flash('signupMessage') });
   });
 
-  //ErfolgreichRegistriert
-  app.get('/erfolgreichRegistriert',function(req,res){
-  	console.log("Got a GET request for the erfolgreichRegistriert");
-  	res.render('erfolgreichRegistriert.html', { message: req.flash('signupMessage') });
-  });
 
   //Home
   app.get('/home',function(req,res){
@@ -195,7 +209,12 @@ module.exports = function(app, passport) {
   //NeuenArtikelEinstellen
   app.get('/neuenArtikelEinstellen',function(req,res){
   	 console.log("Got a GET request for the neuenArtikelEinstellen");
-  	res.render('neuenArtikelEinstellen.html', { message: req.flash('signupMessage') });
+     
+	  if (req.isAuthenticated()){
+		  res.render('neuenArtikelEinstellen.html', { message: req.flash('signupMessage') });
+	  }else{
+  	res.render('index.html', { message: req.flash('signupMessage') });
+	  }
   });
 
   app.get('/randomStuff',function(req,res){
