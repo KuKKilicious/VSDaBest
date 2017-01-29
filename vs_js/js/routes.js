@@ -1,5 +1,6 @@
 // app/routes.js
 var Artikel = require('./Artikel');
+var Nachricht = require('./Nachricht');
 
 
 
@@ -118,25 +119,44 @@ module.exports = function(app, passport) {
 
 
   
-  
-  
-  //------------------------------------------------------------------------------------
-  //------------------------------------------------------------------------------------
-  //------------------------------------------------------------------------------------
-  //------------------------------------------------------------------------------------
-  //------------------------------------------------------------------------------------
-  //------------------------------------------------------------------------------------
-  //EigeneArtikel
-  app.get('/eigeneArtikel', function(req,res){
+app.get('/benachrichtigungen', function(req,res){
 	  
 	  if (req.isAuthenticated()){
 			var name = req.user.local.benutzername;
+			
+	//don't know how to get data out of arti		
+
+			Nachricht.findOne({ anbieter: name}, function (err, doc){
+							
+		// doc is a the found element
+							
+		console.log('returning ' +doc);
+		res.render('benachrichtigungen.html', { user : doc });
+		return doc;
+		});
+	 
+	  	}else{
+	  	res.render('index.html', { message: req.flash('signupMessage') });
+	}
+  });
+  
+
+
+
+
+  
+  //EigeneArtikel
+  app.get('/eigeneArtikel', function(req,res){
+
+	  if (req.isAuthenticated()){
+			var name = req.user.local.benutzername;
+			
 	//don't know how to get data out of arti		
 
 	Artikel.findOne({ benutzername: name}, function (err, doc){
 							
 		// doc is a the found element
-							
+		
 		console.log('returning ' +doc);
 		res.render('eigeneArtikel.html', { user : doc });
 		return doc;
@@ -254,10 +274,10 @@ module.exports = function(app, passport) {
 	    newArtikel= new Artikel();
 	    
 	    newArtikel.titel		= req.body.article.titel;
-	    newArtikel.beschreibung		= req.body.article.beschreibung;
-	    newArtikel.Ort		= ort
-	    newArtikel.plz		= plz
-	    newArtikel.foto		= req.body.article.foto;
+	    newArtikel.beschreibung	= req.body.article.beschreibung;
+	    newArtikel.Ort			= ort
+	    newArtikel.plz			= plz
+	    newArtikel.foto			= req.body.article.foto;
 	    newArtikel.benutzername = name
 	    
 	    	
@@ -272,7 +292,38 @@ module.exports = function(app, passport) {
 		 }
 		 
 		
+	}); 
+	
+	
+	
+	app.post("/nachricht/new", function (req, res) {
+		var interest = req.user.local.benutzername;
+		newNachricht= new Nachricht();
+
+		console.log('_______________________');
+		//bisher getestet: req.local.titel , req.local, req.body.titel
+		console.log('req.locals.user.titel ' + req.body.titel);
+		
+		newNachricht.titel			= 	req.body.titel;
+	    newNachricht.beschreibung	= 	req.body.beschreibung;
+	    newNachricht.ort			= 	req.body.ort;
+	    newNachricht.plz			= 	req.body.plz;
+	    newNachricht.foto			= 	req.body.foto;
+	    newNachricht.anbieter		= 	req.body.benutzername;
+	    newNachricht.interessent	= 	interest;
+
+	    
+	    
+//	    res.redirect('/../eigeneArtikel');
+		
+			
+			 
+		 
+		 
+		
 	});  
+	
+	
 };
 
 

@@ -8,6 +8,7 @@ var ArtikelSchema = new mongoose.Schema({
 	plz: String,
 	foto: String,
 	benutzername: String,
+	
 });
 
 module.exports = mongoose.model('Artikel', ArtikelSchema);
