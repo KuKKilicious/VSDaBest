@@ -146,7 +146,7 @@ app.get('/benachrichtigungen', function(req,res){
 
   
   //EigeneArtikel
-app.get('/eigeneArtikel', function(req,res){
+  app.get('/eigeneArtikel', function(req,res){
 
 	  if (req.isAuthenticated()){
 			var name = req.user.local.benutzername;
@@ -156,21 +156,16 @@ app.get('/eigeneArtikel', function(req,res){
 	Artikel.findOne({ benutzername: name}, function (err, doc){
 							
 		// doc is a the found element
-		if(!doc){
-		res.render('keineArtikel.html');
 		
-		}else{
-		
+		console.log('returning ' +doc);
 		res.render('eigeneArtikel.html', { user : doc });
 		return doc;
-		}
 		});
 	 
 	  	}else{
 	  	res.render('index.html', { message: req.flash('signupMessage') });
 	}
-});
-
+  });
   
   
   //Suchergebnisse
@@ -301,13 +296,13 @@ app.get('/eigeneArtikel', function(req,res){
 	
 	
 	
-	app.get("/nachricht/new", function (req, res) {
+	app.post("/nachricht/new", function (req, res) {
 		var interest = req.user.local.benutzername;
 		newNachricht= new Nachricht();
 
 		console.log('_______________________');
 		//bisher getestet: req.local.titel , req.local, req.body.titel
-		console.log('req.local.user.titel ' + req.params.titel);
+		console.log('req.locals.user.titel ' + req.body.titel);
 		
 		newNachricht.titel			= 	req.body.titel;
 	    newNachricht.beschreibung	= 	req.body.beschreibung;

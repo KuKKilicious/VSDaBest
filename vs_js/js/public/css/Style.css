@@ -79,37 +79,9 @@ div#homeContent
 .suchEingabe{
 	height: 20px;
 	margin: 10px;
-	position: absolute;
-	top: 0px;
-	left: 80px;
-	width: 100px;
+	
 }
 
-#suchLabel{
-	line-height: 40px;
-	padding-left: 20px;
-	position:absolute;
-	left: 20px;
-	top: 0px;
-}
-
-
-.sucheStarten{
-	position: relative;
-	top: -1px;
-	left: 160px;
-	height: 20px;
-	line-height: 20px;
-	padding:0;
-	width: 100px;
-	font-size: 13px;
-}
-
-#headerInfo{
-	position: absolute;
-	top:  0px;
-	right: 5px;
-}
 
 
 div#homeContentImage
