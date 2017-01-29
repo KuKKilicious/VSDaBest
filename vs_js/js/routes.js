@@ -146,7 +146,7 @@ app.get('/benachrichtigungen', function(req,res){
 
   
   //EigeneArtikel
-  app.get('/eigeneArtikel', function(req,res){
+app.get('/eigeneArtikel', function(req,res){
 
 	  if (req.isAuthenticated()){
 			var name = req.user.local.benutzername;
@@ -156,17 +156,21 @@ app.get('/benachrichtigungen', function(req,res){
 	Artikel.findOne({ benutzername: name}, function (err, doc){
 							
 		// doc is a the found element
+		if(!doc){
+		res.render('keineArtikel.html');
 		
-		console.log('returning ' +doc);
+		}else{
+		
 		res.render('eigeneArtikel.html', { user : doc });
-		res.render('keineArtikelGefunden.html', { user : err });
 		return doc;
+		}
 		});
 	 
 	  	}else{
 	  	res.render('index.html', { message: req.flash('signupMessage') });
 	}
-  });
+});
+
   
   
   //Suchergebnisse

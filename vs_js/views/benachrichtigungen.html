@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="utf-8">	
+		<link rel="stylesheet" type="text/css" href="/css/Style.css">
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+		<title>Schenken-Macht-Freude</title>
+	</head>
+	
+	<body>
+<div id="header">
+	<div id="left">
+	<form name="suche" id="suche" action="/suchergebnisse" method="get">
+        <div class="form-group">
+            <label id="suchLabel">Suche</label>
+            <input type="text" class="form-control" name="suche">
+        </div>
+ 		<button type="submit" class="btn btn-warning btn-lg">LOS</button>
+    </form>
+    </div>
+</div>
+		<br/>
+		<br/>			
+		<br/>	
+		<br/>
+		<br/>
+				
+				<div id="left">
+				<a href="profile" class="btn btn-default"><span class="glyphicon">&#xe008;</span> Mein Konto</a>
+				<br/>
+				<br/>
+				<a href="benachrichtungen" class="btn btn-default"><span class="glyphicon">&#x2709; </span> Benachrichtigungen</a>
+				<br/>
+				<br/>
+				<a href="/eigeneArtikel" class="btn btn-default"><span class="fa fa-user"></span> Meine Artikel</a>
+			</div>
+		<br/>
+		<br/>
+
+
+		<br/>
+		<br/>   
+		
+		
+	
+		
+		
+    <div class="page-header text-center">
+        <h1><span class="fa fa-anchor"></span> Mein Konto</h1>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    </div>
+    <div class="row">
+
+        <!-- LOCAL INFORMATION -->
+        <div class="col-sm-6">
+            <div class="well">
+                <h3><span class="glyphicon">&#x2709;</span></span> Benachrichtigungen</h3>
+
+                    <p>
+ 					<strong>Von</strong>: <%= user.interessent %><br> 
+ 				   	<strong>Titel</strong>: <%= user.titel %><br> 
+			       	<strong>Beschreibung</strong>: <%= user.beschreibung %><br> 
+			       	<strong>Ort</strong>: <%= user.ort %><br> 
+			       	<strong>Foto</strong>: <%= user.foto %><br> 
+			       	 
+			      
+			        
+                    </p>
+
+
+            </div>
+        </div>
+     </div>
+	<br/>
+	<br/>
+		
+		<div id="content">
+			<div id="homeContent">
+				<a href="eingestellterArtikel">Einen neuen Artikel einstellen</a>
+			</div>
+
+				
+			</div>					
+		
+		
+
+		
+		
+		
+		
+		<div id="footer">
+			<a href="index">Home</a> -
+			<a href="agb">AGB</a> - 
+			<a href="imprint">Impressum</a> 
+		</div>
+	
+	</body>
+	
+	
+
+</html>
