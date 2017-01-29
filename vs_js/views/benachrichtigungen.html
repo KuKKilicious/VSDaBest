@@ -59,13 +59,21 @@
                 <h3><span class="glyphicon">&#x2709;</span></span> Benachrichtigungen</h3>
 
                     <p>
- 					<strong>Von</strong>: <%= user.interessent %><br> 
+                    	
+ 					<strong>User</strong>: <%= user.interessent %><br>
+ 					<p>hat Interesse an folgendem Artikel: </p> <br>
+ 					
  				   	<strong>Titel</strong>: <%= user.titel %><br> 
 			       	<strong>Beschreibung</strong>: <%= user.beschreibung %><br> 
-			       	<strong>Ort</strong>: <%= user.ort %><br> 
-			       	<strong>Foto</strong>: <%= user.foto %><br> 
+			       
+			       	<p>Sende ihn an folgende Daten: </p> <br>
 			       	 
-			      
+			       	<strong>Strasse</strong>: <%= user.strasse %><br> 
+			       	<strong>Hausnummer</strong>: <%= user.hausnr %><br> 
+			       	<strong>PLZ</strong>: <%= user.plz %><br> 
+			       	<strong>Ort</strong>: <%= user.ort %><br> 
+			       	
+			       
 			        
                     </p>
 

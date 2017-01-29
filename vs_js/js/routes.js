@@ -119,14 +119,14 @@ module.exports = function(app, passport) {
 
 
   
-app.get('/benachrichtigungen', function(req,res){
+app.get('/benachrichtungen', function(req,res){
 	  
 	  if (req.isAuthenticated()){
 			var name = req.user.local.benutzername;
-			
+			console.log('name  ' +name);
 	//don't know how to get data out of arti		
 
-			Nachricht.findOne({ anbieter: name}, function (err, doc){
+			Nachricht.findOne({anbieter: name}, function (err, doc){
 							
 		// doc is a the found element
 							
@@ -204,6 +204,11 @@ app.get('/eigeneArtikel', function(req,res){
   
   });
 
+  
+  
+  
+  
+  
   //EingestellterArtikel
   app.get('/eingestellterArtikel',function(req,res){
   	console.log("Got a GET request for the eingestellterArtikel");

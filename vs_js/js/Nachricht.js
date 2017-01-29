@@ -6,7 +6,8 @@ var NachrichtSchema = new mongoose.Schema({
 	beschreibung: String,
 	ort: String,
 	plz: String,
-	foto: String,
+	strasse: String,
+	nausnr: String,
 	anbieter: String,
 	interessent: String
 });
