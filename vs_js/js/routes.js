@@ -296,13 +296,13 @@ app.get('/benachrichtigungen', function(req,res){
 	
 	
 	
-	app.post("/nachricht/new", function (req, res) {
+	app.get("/nachricht/new", function (req, res) {
 		var interest = req.user.local.benutzername;
 		newNachricht= new Nachricht();
 
 		console.log('_______________________');
 		//bisher getestet: req.local.titel , req.local, req.body.titel
-		console.log('req.locals.user.titel ' + req.body.titel);
+		console.log('req.local.user.titel ' + req.params.titel);
 		
 		newNachricht.titel			= 	req.body.titel;
 	    newNachricht.beschreibung	= 	req.body.beschreibung;
