@@ -200,7 +200,10 @@ app.get('/benachrichtungen', function(req,res){
   });
 
   
-  
+  app.get('/nachricht',function(req,res){
+	  	 console.log("Got a GET request for the nachricht");
+	  	res.render('nachricht.html', { message: req.flash('signupMessage') });
+	  });
   
   
   
